@@ -18,15 +18,79 @@ public class EventController : ControllerBase
         _logger = logger;
     }
     
-    [HttpGet("key/{key}")]
-    public ActionResult<Evento> GetEventByKey()
+    [HttpGet("Get/{eventoId}")]
+    public async Task<IActionResult> GetEvent(string eventoId)
     {
-        return Ok();
+        try
+        {
+            if (string.IsNullOrEmpty(eventoId))
+            {
+                return BadRequest("O ID do evento não foi fornecido.");
+            }
+
+            var evento = await _eventService.GetEvents(eventoId);
+
+            if (evento == null)
+            {
+                return NotFound($"Evento com ID {eventoId} não encontrado.");
+            }
+
+            return Ok(evento);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Ocorreu um erro ao buscar o evento.");
+            return StatusCode(500, "Ocorreu um erro interno.");
+        }
     }
 
-    
+    [HttpGet("GetAll")]
+    public async Task<IActionResult> GetAllEvents()
+    {
+        try
+        {
+            var eventos = await _eventService.GetAllEvents();
+
+            if (eventos == null || !eventos.Any())
+            {
+                return NotFound("Nenhum evento encontrado.");
+            }
+
+            return Ok(eventos);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Ocorreu um erro ao buscar todos os eventos.");
+            return StatusCode(500, "Ocorreu um erro interno.");
+        }
+    }
+    [HttpDelete("Delete/{eventoId}")]
+    public async Task<IActionResult> DeleteEvent(string eventoId)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(eventoId))
+            {
+                return BadRequest("O ID do evento não foi fornecido.");
+            }
+
+            var deletedEvent = await _eventService.DeleteEvent(eventoId);
+
+            if (deletedEvent == null)
+            {
+                return NotFound($"Evento com ID {eventoId} não encontrado.");
+            }
+
+            return Ok($"Evento com ID {eventoId} foi excluído com sucesso.");
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Ocorreu um erro ao excluir o evento.");
+            return StatusCode(500, "Ocorreu um erro interno.");
+        }
+    }
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(EventoDto evento)
+    public async Task<IActionResult> CreateEvent(EventoRequest evento)
     {
         try
         {
@@ -35,20 +99,53 @@ public class EventController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdEvent = await _eventService.CreateEvent<EventoDto>(evento);
+            var createdEvent = await _eventService.CreateEvent(evento);
 
             _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent.EventoId}");
 
 
-            return Ok();
+            return Ok(new EventoResponse()
+            {
+                Result = "Evento Criado, Parabéns!",
+                evento = createdEvent
+            });
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
-       
+    }
+    
+    [HttpPut("Update/{eventoId}")]
+    public async Task<IActionResult> UpdateEvent(string eventoId, [FromBody] EventoRequest eventoRequest)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(eventoId))
+            {
+                return BadRequest("O ID do evento não foi fornecido.");
+            }
 
+            if (eventoRequest == null)
+            {
+                return BadRequest("Os dados do evento para atualização não foram fornecidos.");
+            }
+
+            var updatedEvent = await _eventService.UpdateEvent(eventoRequest,eventoId);
+
+            if (updatedEvent == null)
+            {
+                return NotFound($"Evento com ID {eventoId} não encontrado.");
+            }
+
+            return Ok(updatedEvent);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Ocorreu um erro ao atualizar o evento.");
+            return StatusCode(500, "Ocorreu um erro interno.");
+        }
     }
 
 }

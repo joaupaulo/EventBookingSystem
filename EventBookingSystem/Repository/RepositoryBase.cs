@@ -35,16 +35,16 @@ public class RepositoryBase : IRepositoryBase
 
     }
     
-    public async Task<T> CreateDocumentAsync<T>(string collectionName, T Document)
+    public async Task<T> CreateDocumentAsync<T>(string collectionName, T document)
     {
         var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
             
-             await collection.InsertOneAsync(Document);
+             await collection.InsertOneAsync(document);
 
-            return Document;
+             return document;
         }
         catch (Exception e)
         {
@@ -86,14 +86,14 @@ public class RepositoryBase : IRepositoryBase
         }
     }
 
-    public async Task<T> GetDocument<T>(string collectionName, Evento evento)
+    public async Task<T> GetDocument<T>(string collectionName, string eventoId)
     {
         var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", evento.EventoId);
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", eventoId);
 
             var result = await collection.Find(filter).FirstOrDefaultAsync();
 
@@ -112,14 +112,14 @@ public class RepositoryBase : IRepositoryBase
 
     }
 
-    public async Task<bool> UpdateDocument<T>(string collectionName,  BsonDocument filterUpdate, BsonDocument filter)
+    public async Task<bool> UpdateDocument<T>(string collectionName, FilterDefinition<T> filter, UpdateDefinition<T> update) 
     {
         var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            var result = await collection.UpdateOneAsync(filter, filterUpdate);
+            var result = await collection.UpdateOneAsync(filter,update);
 
             return result.ModifiedCount > 0;
         }
@@ -135,13 +135,13 @@ public class RepositoryBase : IRepositoryBase
         }
     }
    
-    public async Task<bool> DeleteDocument<T>(string collectionName, Evento evento)
+    public async Task<bool> DeleteDocument<T>(string collectionName, string Id)
     {
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", evento.EventoId);
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", Id);
 
             var result = await collection.DeleteOneAsync(filter);
 

@@ -4,6 +4,7 @@ using EventBookingSystem.Repository;
 using EventBookingSystem.Service.Interface;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace EventBookingSystem.Service;
 
@@ -18,18 +19,21 @@ public class EventService : RepositoryBase, IEventService
          _repositoryBase = repositoryBase;
     }
     
-    public async Task<EventoDto> CreateEvent<EventoDto>(EventoDto evento)
+    public async Task<Evento> CreateEvent(EventoRequest evento)
     {
         try
         {
+            
             if (evento == null)
             {
                 throw new NullReferenceException("");
             }
+
+            var eventoHandler = EventMapper(evento);
+
+            var result = await _repositoryBase.CreateDocumentAsync<Evento>(_collectionName, eventoHandler);
             
-            var result = await _repositoryBase.CreateDocumentAsync<EventoDto>(_collectionName, evento );
-          
-          return evento;
+            return result;
         }
         catch (Exception ex)
         {
@@ -40,12 +44,34 @@ public class EventService : RepositoryBase, IEventService
             _logger.LogInformation($"Crete done in collection{_collectionName}");
         }
     }
-    
-    public async Task<List<EventoDto>> GetAllEvents<EventoDto>()
+
+    private static Evento EventMapper(EventoRequest evento)
+    {
+        Evento eventoRequest = Evento.CriarNovoEvento
+        (
+            evento.Nome,
+            evento.Data,
+            evento.Local,
+            evento.CapacidadeMaxima,
+            evento.Preco,
+            evento.Descricao
+        );
+
+        foreach (var participanteDto in evento.Participantes)
+        {
+            Participante participante =
+                Participante.CriarNovoParticipante(participanteDto.Nome, participanteDto.Email, participanteDto.Phone);
+            eventoRequest.AdicionarParticipante(participante);
+        }
+
+        return eventoRequest;
+    }
+
+    public async Task<List<Evento>> GetAllEvents()
     {
         try
         {
-            var result = await _repositoryBase.GetAllDocument<EventoDto>(_collectionName);
+            var result = await _repositoryBase.GetAllDocument<Evento>(_collectionName);
 
             return result;
 
@@ -62,11 +88,11 @@ public class EventService : RepositoryBase, IEventService
        
     }
     
-    public async Task<EventoDto> GetEvents<EventoDto>(Evento eventoDto)
+    public async Task<Evento> GetEvents(string id)
     {
         try
         {
-            var result = await _repositoryBase.GetDocument<EventoDto>(_collectionName,eventoDto);
+            var result = await _repositoryBase.GetDocument<Evento>(_collectionName,id);
 
             return result;
 
@@ -81,11 +107,11 @@ public class EventService : RepositoryBase, IEventService
             _logger.LogInformation($"FindAll done in collection{_collectionName}");
         }
     }
-    public async Task<bool> DeleteEvent<T>(Evento evento)
+    public async Task<bool> DeleteEvent(string Id)
     {
         try
         {
-            var result = await _repositoryBase.DeleteDocument<T>(_collectionName, evento);
+            var result = await _repositoryBase.DeleteDocument<Evento>(_collectionName, Id );
 
             return result;
         }
@@ -100,11 +126,15 @@ public class EventService : RepositoryBase, IEventService
         }
     }
     
-    public async Task<bool> UpdateEvent<T>(BsonDocument filterUpdate, BsonDocument filter)
+    public async Task<bool> UpdateEvent(EventoRequest eventoRequest, string Id)
     {
         try
         {
-            var result = await _repositoryBase.UpdateDocument<T>(_collectionName, filterUpdate, filter);
+            var eventoDocument = eventoRequest.ToBsonDocument();
+            
+            var filter = Builders<Evento>.Filter.Eq("_id", new ObjectId(Id));
+            
+            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName,filter, eventoDocument);
 
             return result;
         }

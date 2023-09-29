@@ -2,7 +2,7 @@
 
 namespace EventBookingSystem.Model.DTOs;
 
-public class EventoDto
+public class EventoRequest
     {
         public ObjectId EventoId { get; set; }
         public string Nome { get; set; }
@@ -11,5 +11,5 @@ public class EventoDto
         public int CapacidadeMaxima { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
-        public List<ParticipanteDto> Participantes { get; set; }
+        public List<ParticipanteRequest> Participantes { get; set; }
     }

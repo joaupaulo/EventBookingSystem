@@ -119,7 +119,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpPut("Update/{reservaId}")]
-    public async Task<IActionResult> UpdateReserva(string reservaId, [FromBody] Reserva reservaRequest)
+    public async Task<IActionResult> UpdateReserva(string reservaId, [FromBody] Reserva reserva)
     {
         try
         {
@@ -128,12 +128,12 @@ public class ReservaController : ControllerBase
                 return BadRequest("O ID da reserva não foi fornecido.");
             }
 
-            if (reservaRequest == null)
+            if (reserva == null)
             {
                 return BadRequest("Os dados da reserva para atualização não foram fornecidos.");
             }
 
-            var updatedReserva = await _reservaService.UpdateReserva(reservaRequest, reservaId);
+            var updatedReserva = await _reservaService.UpdateReserva(reserva, reservaId);
 
             if (updatedReserva == null)
             {

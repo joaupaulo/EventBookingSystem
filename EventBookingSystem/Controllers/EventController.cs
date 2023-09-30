@@ -18,21 +18,21 @@ public class EventController : ControllerBase
         _logger = logger;
     }
     
-    [HttpGet("Get/{eventoId}")]
-    public async Task<IActionResult> GetEvent(string eventoId)
+    [HttpGet("Get/{eventKey}")]
+    public async Task<IActionResult> GetEvent(string eventKey)
     {
         try
         {
-            if (string.IsNullOrEmpty(eventoId))
+            if (string.IsNullOrEmpty(eventKey))
             {
                 return BadRequest("O ID do evento não foi fornecido.");
             }
 
-            var evento = await _eventService.GetEvents(eventoId);
+            var evento = await _eventService.GetEvents(eventKey);
 
             if (evento == null)
             {
-                return NotFound($"Evento com ID {eventoId} não encontrado.");
+                return NotFound($"Evento com ID {eventKey} não encontrado.");
             }
 
             return Ok(evento);
@@ -101,7 +101,7 @@ public class EventController : ControllerBase
 
             var createdEvent = await _eventService.CreateEvent(evento);
 
-            _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent.EventoId}");
+            _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent._Id}");
 
 
             return Ok(new EventoResponse()
@@ -118,11 +118,11 @@ public class EventController : ControllerBase
     }
     
     [HttpPut("Update/{eventoId}")]
-    public async Task<IActionResult> UpdateEvent(string eventoId, [FromBody] EventoRequest eventoRequest)
+    public async Task<IActionResult> UpdateEvent(string eventKey, [FromBody] EventoRequest eventoRequest)
     {
         try
         {
-            if (string.IsNullOrEmpty(eventoId))
+            if (string.IsNullOrEmpty(eventKey))
             {
                 return BadRequest("O ID do evento não foi fornecido.");
             }
@@ -132,11 +132,11 @@ public class EventController : ControllerBase
                 return BadRequest("Os dados do evento para atualização não foram fornecidos.");
             }
 
-            var updatedEvent = await _eventService.UpdateEvent(eventoRequest,eventoId);
+            var updatedEvent = await _eventService.UpdateEvent(eventoRequest,eventKey);
 
             if (updatedEvent == null)
             {
-                return NotFound($"Evento com ID {eventoId} não encontrado.");
+                return NotFound($"Evento com ID {eventKey} não encontrado.");
             }
 
             return Ok(updatedEvent);

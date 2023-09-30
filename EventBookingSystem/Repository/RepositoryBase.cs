@@ -68,11 +68,13 @@ public class RepositoryBase : IRepositoryBase
 
             var filter = new BsonDocument();
 
-            var result = await collection.FindAsync<T>(filter);
+            var result = await collection.FindAsync(filter);
 
-            count = result.ToList().Count();
+            var documents = await result.ToListAsync();
 
-            return result.ToList();
+            count = documents.Count;
+
+            return documents;
         }
         catch (Exception e)
         {
@@ -86,14 +88,14 @@ public class RepositoryBase : IRepositoryBase
         }
     }
 
-    public async Task<T> GetDocument<T>(string collectionName, string eventoId)
+    public async Task<T> GetDocument<T>(string collectionName, Guid Key)
     {
         var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", eventoId);
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventKey", Key);
 
             var result = await collection.Find(filter).FirstOrDefaultAsync();
 
@@ -135,13 +137,13 @@ public class RepositoryBase : IRepositoryBase
         }
     }
    
-    public async Task<bool> DeleteDocument<T>(string collectionName, string Id)
+    public async Task<bool> DeleteDocument<T>(string collectionName, Guid Key)
     {
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", Id);
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventKey", Key);
 
             var result = await collection.DeleteOneAsync(filter);
 

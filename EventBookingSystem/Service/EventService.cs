@@ -17,6 +17,7 @@ public class EventService : RepositoryBase, IEventService
     public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger ) : base(logger, ConnectionStringType.Eventos )
     {
          _repositoryBase = repositoryBase;
+         _logger = logger;
     }
     
     public async Task<Evento> CreateEvent(EventoRequest evento)
@@ -88,11 +89,14 @@ public class EventService : RepositoryBase, IEventService
        
     }
     
-    public async Task<Evento> GetEvents(string id)
+    public async Task<Evento> GetEvents(string eventKey)
     {
         try
         {
-            var result = await _repositoryBase.GetDocument<Evento>(_collectionName,id);
+            Guid Key;
+            Guid.TryParse(eventKey, out Key);
+            
+            var result = await _repositoryBase.GetDocument<Evento>(_collectionName,Key);
 
             return result;
 
@@ -107,11 +111,12 @@ public class EventService : RepositoryBase, IEventService
             _logger.LogInformation($"FindAll done in collection{_collectionName}");
         }
     }
-    public async Task<bool> DeleteEvent(string Id)
+    public async Task<bool> DeleteEvent(string eventKey)
     {
         try
         {
-            var result = await _repositoryBase.DeleteDocument<Evento>(_collectionName, Id );
+            Guid Key = Guid.TryParse(eventKey, out Guid resultKey) ? resultKey : Guid.Empty; 
+            var result = await _repositoryBase.DeleteDocument<Evento>(_collectionName, resultKey );
 
             return result;
         }
@@ -126,13 +131,13 @@ public class EventService : RepositoryBase, IEventService
         }
     }
     
-    public async Task<bool> UpdateEvent(EventoRequest eventoRequest, string Id)
+    public async Task<bool> UpdateEvent(EventoRequest eventoRequest, string eventKey)
     {
         try
         {
             var eventoDocument = eventoRequest.ToBsonDocument();
             
-            var filter = Builders<Evento>.Filter.Eq("_id", new ObjectId(Id));
+            var filter = Builders<Evento>.Filter.Eq("_id", new ObjectId(eventKey));
             
             var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName,filter, eventoDocument);
 

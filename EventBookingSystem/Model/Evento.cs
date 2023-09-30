@@ -1,10 +1,12 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace EventBookingSystem.Model;
 
 public class Evento
 {
-    public ObjectId EventoId { get; private set; }
+    [BsonId]
+    public ObjectId _Id { get; private set; }
     public Guid EventKey { get; private set; }
     public string Nome { get; private set; }
     public DateTime Data { get; private set; }
@@ -32,7 +34,7 @@ public class Evento
         if (preco < 0)
             throw new ArgumentException("O preço não pode ser negativo.", nameof(preco));
 
-        EventoId = ObjectId.GenerateNewId();
+        _Id = ObjectId.GenerateNewId();
         EventKey = Guid.NewGuid();
         Nome = nome;
         Data = data;

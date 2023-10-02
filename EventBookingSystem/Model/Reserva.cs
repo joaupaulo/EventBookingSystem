@@ -7,8 +7,8 @@ public class Reserva
 {
    [BsonId]
    public ObjectId Id { get; set; }
-   public Evento Evento { get; set; }
-   public Usuario Usuario { get; set; }
+   public  EventoReservado EventoReservado { get; set; }
+   public Guid EventKey { get; set; }
    public int NumeroParticipante { get; set; }
    public DateTime DataReserva { get; set; }
    public decimal ValorTotal { get; private set; }

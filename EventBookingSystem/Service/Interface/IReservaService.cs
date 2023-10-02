@@ -4,9 +4,9 @@ namespace EventBookingSystem.Service.Interface;
 
 public interface IReservaService
 {
-    Task<Reserva> CreateReserva(Reserva reserva);
-    Task<List<Reserva>> GetAllReservas();
-    Task<Reserva> GetReserva(string reservaKey);
+    Task<EventoReservado> CreateReserva(EventoReservado reserva);
+    Task<List<EventoReservado>> GetAllReservas();
+    Task<EventoReservado> GetReserva(string reservaKey);
     Task<bool> DeleteReserva(string reservaKey);
-    Task<bool> UpdateReserva(Reserva reserva, string reservaKey);
+    Task<bool> UpdateReserva(EventoReservado reserva, string reservaKey);
 }

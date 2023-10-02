@@ -10,15 +10,15 @@ public class ReservaService : RepositoryBase, IReservaService
 {
     private readonly ILogger<ReservaService> _logger;
     private readonly IRepositoryBase _repositoryBase;
-    private string _collectionName = "reserva-collection";
+    private string _collectionName = "reserva-register";
 
-    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger) : base(logger, ConnectionStringType.Eventos)
+    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger) : base(logger, ConnectionStringType.Reserva)
     {
         _repositoryBase = repositoryBase;
         _logger = logger;
     }
 
-    public async Task<Reserva> CreateReserva(Reserva reserva)
+    public async Task<EventoReservado> CreateReserva(EventoReservado reserva)
     {
         try
         {
@@ -27,7 +27,7 @@ public class ReservaService : RepositoryBase, IReservaService
                 throw new NullReferenceException("Os dados da reserva não foram fornecidos.");
             }
             
-            var result = await _repositoryBase.CreateDocumentAsync<Reserva>(_collectionName, reserva);
+            var result = await _repositoryBase.CreateDocumentAsync<EventoReservado>(_collectionName, reserva);
 
             return result;
         }
@@ -42,11 +42,11 @@ public class ReservaService : RepositoryBase, IReservaService
         }
     }
     
-      public async Task<List<Reserva>> GetAllReservas()
+      public async Task<List<EventoReservado>> GetAllReservas()
     {
         try
         {
-            var result = await _repositoryBase.GetAllDocument<Reserva>(_collectionName);
+            var result = await _repositoryBase.GetAllDocument<EventoReservado>(_collectionName);
 
             return result;
         }
@@ -61,7 +61,7 @@ public class ReservaService : RepositoryBase, IReservaService
         }
     }
 
-      public async Task<Reserva> GetReserva(string reservaKey)
+      public async Task<EventoReservado> GetReserva(string reservaKey)
       {
           try
           {
@@ -71,7 +71,7 @@ public class ReservaService : RepositoryBase, IReservaService
                   return null; 
               }
               
-              var result = await _repositoryBase.GetDocument<Reserva>(_collectionName, key);
+              var result = await _repositoryBase.GetDocument<EventoReservado>(_collectionName, key);
 
               return result;
           }
@@ -96,7 +96,7 @@ public class ReservaService : RepositoryBase, IReservaService
                 return false;
             }
             
-            var result = await _repositoryBase.DeleteDocument<Reserva>(_collectionName, key);
+            var result = await _repositoryBase.DeleteDocument<EventoReservado>(_collectionName, key);
 
             return result;
         }
@@ -111,14 +111,14 @@ public class ReservaService : RepositoryBase, IReservaService
         }
     }
 
-    public async Task<bool> UpdateReserva(Reserva reserva, string reservaKey)
+    public async Task<bool> UpdateReserva(EventoReservado reserva, string reservaKey)
     {
         try
         {
             var reservaDocument = reserva.ToBsonDocument();
-            var filter = Builders<Reserva>.Filter.Eq("ReservaKey", reservaKey);
+            var filter = Builders<EventoReservado>.Filter.Eq("ReservaKey", reservaKey);
 
-            var result = await _repositoryBase.UpdateDocument<Reserva>(_collectionName, filter, reservaDocument);
+            var result = await _repositoryBase.UpdateDocument<EventoReservado>(_collectionName, filter, reservaDocument);
 
             return result;
         }

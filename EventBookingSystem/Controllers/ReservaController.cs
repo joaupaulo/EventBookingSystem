@@ -18,21 +18,21 @@ public class ReservaController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("Get/{reservaId}")]
-    public async Task<IActionResult> GetReserva(string reservaId)
+    [HttpGet("Get/{reservaKey}")]
+    public async Task<IActionResult> GetReserva(string reservaKey)
     {
         try
         {
-            if (string.IsNullOrEmpty(reservaId))
+            if (string.IsNullOrEmpty(reservaKey))
             {
                 return BadRequest("O ID da reserva não foi fornecido.");
             }
 
-            var reserva = await _reservaService.GetReserva(reservaId);
+            var reserva = await _reservaService.GetReserva(reservaKey);
 
             if (reserva == null)
             {
-                return NotFound($"Reserva com ID {reservaId} não encontrada.");
+                return NotFound($"Reserva com ID {reservaKey} não encontrada.");
             }
 
             return Ok(reserva);
@@ -65,24 +65,24 @@ public class ReservaController : ControllerBase
         }
     }
 
-    [HttpDelete("Delete/{reservaId}")]
-    public async Task<IActionResult> DeleteReserva(string reservaId)
+    [HttpDelete("Delete/{reservaKey}")]
+    public async Task<IActionResult> DeleteReserva(string reservaKey)
     {
         try
         {
-            if (string.IsNullOrEmpty(reservaId))
+            if (string.IsNullOrEmpty(reservaKey))
             {
                 return BadRequest("O ID da reserva não foi fornecido.");
             }
 
-            var deletedReserva = await _reservaService.DeleteReserva(reservaId);
+            var deletedReserva = await _reservaService.DeleteReserva(reservaKey);
 
             if (deletedReserva == null)
             {
-                return NotFound($"Reserva com ID {reservaId} não encontrada.");
+                return NotFound($"Reserva com ID {reservaKey} não encontrada.");
             }
 
-            return Ok($"Reserva com ID {reservaId} foi excluída com sucesso.");
+            return Ok($"Reserva com ID {reservaKey} foi excluída com sucesso.");
         }
         catch (Exception e)
         {
@@ -92,7 +92,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateReserva(Reserva reserva)
+    public async Task<IActionResult> CreateReserva(EventoReservado reserva)
     {
         try
         {
@@ -103,7 +103,7 @@ public class ReservaController : ControllerBase
 
             var createdReserva = await _reservaService.CreateReserva(reserva);
 
-            _logger.LogInformation($"Reserva criada com sucesso. ID: {createdReserva.Id}");
+            _logger.LogInformation($"Reserva criada com sucesso. ID: {createdReserva.EventKey}");
 
             return Ok(new ReservaResponse()
             {
@@ -118,12 +118,12 @@ public class ReservaController : ControllerBase
         }
     }
 
-    [HttpPut("Update/{reservaId}")]
-    public async Task<IActionResult> UpdateReserva(string reservaId, [FromBody] Reserva reserva)
+    [HttpPut("Update/{reservaKey}")]
+    public async Task<IActionResult> UpdateReserva(string reservaKey, [FromBody] EventoReservado reserva)
     {
         try
         {
-            if (string.IsNullOrEmpty(reservaId))
+            if (string.IsNullOrEmpty(reservaKey))
             {
                 return BadRequest("O ID da reserva não foi fornecido.");
             }
@@ -133,11 +133,11 @@ public class ReservaController : ControllerBase
                 return BadRequest("Os dados da reserva para atualização não foram fornecidos.");
             }
 
-            var updatedReserva = await _reservaService.UpdateReserva(reserva, reservaId);
+            var updatedReserva = await _reservaService.UpdateReserva(reserva, reservaKey);
 
             if (updatedReserva == null)
             {
-                return NotFound($"Reserva com ID {reservaId} não encontrada.");
+                return NotFound($"Reserva com ID {reservaKey} não encontrada.");
             }
 
             return Ok(updatedReserva);

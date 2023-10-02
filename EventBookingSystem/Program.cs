@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IRepositoryBase, RepositoryBase>();
 builder.Services.AddTransient<IEventService, EventService>();
+builder.Services.AddTransient<IReservaService, ReservaService>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()

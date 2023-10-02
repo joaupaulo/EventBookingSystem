@@ -29,7 +29,7 @@ public class RepositoryBase : IRepositoryBase
                 MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("home");
                 break;
             case ConnectionStringType.Reserva:
-                MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("reserva");
+                MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("UserRegister");
                 break;
         }
 

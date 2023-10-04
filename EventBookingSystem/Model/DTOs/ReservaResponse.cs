@@ -3,5 +3,5 @@
 public class ReservaResponse
 {
    public string Resultado { get; set; }
-   public EventoReservado Reserva { get; set; }
+   public Reserva Reserva{ get; set; }
 }

@@ -7,12 +7,15 @@ public class Reserva
 {
    [BsonId]
    public ObjectId Id { get; set; }
-   public  EventoReservado EventoReservado { get; set; }
    public Guid EventKey { get; set; }
    public int NumeroParticipante { get; set; }
    public DateTime DataReserva { get; set; }
    public decimal ValorTotal { get; private set; }
    public ReservaStatus Status { get; private set; }
+   public List<Participante> Participantes { get;  set; }
+   public  EventoReservado EventoReservado { get; set; }
+
+   
    public Reserva()
    {
       ValorTotal = CalcularValorTotal();
@@ -37,4 +40,5 @@ public class Reserva
 
          return valorTotal;
    }
+   
 }

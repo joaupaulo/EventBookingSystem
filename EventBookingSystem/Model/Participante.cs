@@ -4,13 +4,13 @@ namespace EventBookingSystem.Model;
 
     public class Participante
     {
-        public ObjectId ParticipanteId { get; private set; }
-        public string Nome { get; private set; }
-        public string Email { get; private set; }
-        public string Telefone { get; private set; }
-        public DateTime DataInscricao { get; private set; }
+        public ObjectId ParticipanteId { get;  set; }
+        public string Nome { get;  set; }
+        public string Email { get;  set; }
+        public string Telefone { get;  set; }
+        public DateTime DataInscricao { get;  set; }
 
-        private Participante(string nome, string email, string telefone)
+        public Participante(string nome, string email, string telefone)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("O nome do participante não pode ser vazio.", nameof(nome));
@@ -27,11 +27,6 @@ namespace EventBookingSystem.Model;
             Email = email;
             Telefone = telefone;
             DataInscricao = DateTime.Now; 
-        }
-
-        public static Participante CriarNovoParticipante(string nome, string email, string telefone)
-        {
-            return new Participante(nome, email, telefone);
         }
 
         private bool IsValidEmail(string email)

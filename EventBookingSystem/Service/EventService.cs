@@ -57,14 +57,6 @@ public class EventService : RepositoryBase, IEventService
             evento.Preco,
             evento.Descricao
         );
-
-        foreach (var participanteDto in evento.Participantes)
-        {
-            Participante participante =
-                Participante.CriarNovoParticipante(participanteDto.Nome, participanteDto.Email, participanteDto.Phone);
-            eventoRequest.AdicionarParticipante(participante);
-        }
-
         return eventoRequest;
     }
 
@@ -131,15 +123,15 @@ public class EventService : RepositoryBase, IEventService
         }
     }
     
-    public async Task<bool> UpdateEvent(EventoRequest eventoRequest, string eventKey)
+    public async Task<bool> UpdateEvent(Evento eventoRequest, string eventKey)
     {
         try
         {
-            var eventoDocument = eventoRequest.ToBsonDocument();
+            Guid Key = Guid.TryParse(eventKey, out Guid resultKey) ? resultKey : Guid.Empty;
             
-            var filter = Builders<Evento>.Filter.Eq("_id", new ObjectId(eventKey));
+            var filter = Builders<Evento>.Filter.Eq("EventKey", resultKey);
             
-            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName,filter, eventoDocument);
+            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName,filter, eventoRequest);
 
             return result;
         }

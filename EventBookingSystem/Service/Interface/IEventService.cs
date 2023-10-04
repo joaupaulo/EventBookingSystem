@@ -10,5 +10,5 @@ public interface IEventService
     Task<Evento> GetEvents(string eventoId);
     Task<List<Evento>> GetAllEvents();
     Task<bool> DeleteEvent(string Id);
-    Task<bool> UpdateEvent(EventoRequest eventoRequest, string EventKey);
+    Task<bool> UpdateEvent(Evento eventoRequest, string EventKey);
 }

@@ -1,6 +1,7 @@
 ﻿using EventBookingSystem.Model;
 using EventBookingSystem.Model.DTOs;
 using EventBookingSystem.Service.Interface;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventBookingSystem.Controllers;
@@ -10,12 +11,14 @@ namespace EventBookingSystem.Controllers;
 public class ReservaController : ControllerBase
 {
     private readonly IReservaService _reservaService;
+    private readonly IEventService _eventService;
     private readonly ILogger<ReservaController> _logger;
 
-    public ReservaController(IReservaService reservaService, ILogger<ReservaController> logger)
+    public ReservaController(IReservaService reservaService, ILogger<ReservaController> logger,IEventService eventService)
     {
         _reservaService = reservaService;
         _logger = logger;
+        _eventService = eventService;
     }
 
     [HttpGet("Get/{reservaKey}")]
@@ -91,8 +94,8 @@ public class ReservaController : ControllerBase
         }
     }
 
-    [HttpPost("Create")]
-    public async Task<IActionResult> CreateReserva(EventoReservado reserva)
+    [HttpPost("Create/{eventKey}")]
+    public async Task<IActionResult> CreateReserva(Reserva reserva,string eventKey)
     {
         try
         {
@@ -101,14 +104,33 @@ public class ReservaController : ControllerBase
                 return BadRequest(ModelState);
             }
 
+            var verifyEventReserved = await _eventService.GetEvents(eventKey);
+
+            if (verifyEventReserved.CapacidadeMaxima < reserva.NumeroParticipante)
+            {
+                throw new InvalidOperationException("Não há mais vagas disponíveis para este evento.");
+            }
+
+            reserva.EventoReservado.CapacidadeMaxima = verifyEventReserved.CapacidadeMaxima;
+            reserva.EventoReservado.EventKey = verifyEventReserved.EventKey;
+            reserva.EventoReservado.Descricao = verifyEventReserved.Descricao;
+            reserva.EventoReservado.Preco = verifyEventReserved.Preco;
+            reserva.EventoReservado.Nome = verifyEventReserved.Nome;
+            reserva.EventoReservado.Local = verifyEventReserved.Local;
+            reserva.EventoReservado.Data = verifyEventReserved.Data;
+
             var createdReserva = await _reservaService.CreateReserva(reserva);
 
+            verifyEventReserved.DefinirCapacidadeMaxima(reserva.NumeroParticipante);
+
+            await  _eventService.UpdateEvent(verifyEventReserved,eventKey);
+            
             _logger.LogInformation($"Reserva criada com sucesso. ID: {createdReserva.EventKey}");
 
             return Ok(new ReservaResponse()
             {
               Resultado = "Sua reserva foi feita com sucesso!",
-              Reserva = createdReserva
+              Reserva = reserva
             });
         }
         catch (Exception e)
@@ -119,7 +141,7 @@ public class ReservaController : ControllerBase
     }
 
     [HttpPut("Update/{reservaKey}")]
-    public async Task<IActionResult> UpdateReserva(string reservaKey, [FromBody] EventoReservado reserva)
+    public async Task<IActionResult> UpdateReserva(string reservaKey, [FromBody] Reserva reserva)
     {
         try
         {

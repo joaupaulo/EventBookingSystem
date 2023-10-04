@@ -11,5 +11,6 @@ public class EventoRequest
         public int CapacidadeMaxima { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
+        public int QuantiadeParticipates { get; set; }
         public List<ParticipanteRequest> Participantes { get; set; }
     }

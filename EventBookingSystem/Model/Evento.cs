@@ -15,8 +15,6 @@ public class Evento
     public decimal Preco { get; private set; }
     public string Descricao { get; private set; }
 
-    private List<Participante> Participantes { get; set; }
-
     private Evento(string nome, DateTime data, string local, int capacidadeMaxima, decimal preco, string descricao)
     {
         if (string.IsNullOrEmpty(nome))
@@ -42,7 +40,6 @@ public class Evento
         CapacidadeMaxima = capacidadeMaxima;
         Preco = preco;
         Descricao = descricao;
-        Participantes = new List<Participante>();
     }
 
     public static Evento CriarNovoEvento(string nome, DateTime data, string local, int capacidadeMaxima, decimal preco, string descricao)
@@ -50,18 +47,10 @@ public class Evento
         return new Evento(nome, data, local, capacidadeMaxima, preco, descricao);
     }
 
-    public void AdicionarParticipante(Participante participante)
+    public void DefinirCapacidadeMaxima(int novaCapacidade)
     {
-        if (participante == null)
-            throw new ArgumentNullException(nameof(participante), "O participante não pode ser nulo.");
-
-        if (Participantes.Count >= CapacidadeMaxima)
-            throw new InvalidOperationException("Não há mais vagas disponíveis para este evento.");
-
-        // Verifique se o participante já está na lista antes de adicioná-lo (caso não permita participantes duplicados)
-        if (Participantes.Any(p => p.Email == participante.Email))
-            throw new InvalidOperationException("Este participante já está inscrito neste evento.");
-
-        Participantes.Add(participante);
+        if (novaCapacidade <= 0)
+            throw new ArgumentException(" A capacidade maxima deve ser maior que 0");
+        CapacidadeMaxima = CapacidadeMaxima - novaCapacidade;
     }
 }

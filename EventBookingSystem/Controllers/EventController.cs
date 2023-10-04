@@ -118,7 +118,7 @@ public class EventController : ControllerBase
     }
     
     [HttpPut("Update/{eventoId}")]
-    public async Task<IActionResult> UpdateEvent(string eventKey, [FromBody] EventoRequest eventoRequest)
+    public async Task<IActionResult> UpdateEvent(string eventKey, [FromBody] Evento eventoRequest)
     {
         try
         {
@@ -131,7 +131,7 @@ public class EventController : ControllerBase
             {
                 return BadRequest("Os dados do evento para atualização não foram fornecidos.");
             }
-
+            
             var updatedEvent = await _eventService.UpdateEvent(eventoRequest,eventKey);
 
             if (updatedEvent == null)

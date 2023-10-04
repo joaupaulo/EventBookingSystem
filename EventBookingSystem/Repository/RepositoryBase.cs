@@ -114,14 +114,14 @@ public class RepositoryBase : IRepositoryBase
 
     }
 
-    public async Task<bool> UpdateDocument<T>(string collectionName, FilterDefinition<T> filter, UpdateDefinition<T> update) 
+    public async Task<bool> UpdateDocument<T>(string collectionName, FilterDefinition<T> filter, T update) 
     {
         var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            var result = await collection.UpdateOneAsync(filter,update);
+            var result = await collection.ReplaceOneAsync(filter,update);
 
             return result.ModifiedCount > 0;
         }

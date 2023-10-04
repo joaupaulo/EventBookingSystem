@@ -15,5 +15,4 @@ public class EventoReservado
     public int CapacidadeMaxima { get;  set; }
     public decimal Preco { get;  set; }
     public string Descricao { get;  set; }
-    public List<ParticipanteReserva>? Participantes { get; set; }
 }

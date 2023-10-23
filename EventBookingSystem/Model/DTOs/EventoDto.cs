@@ -11,5 +11,4 @@ public class EventoDto
         public int CapacidadeMaxima { get; set; }
         public decimal Preco { get; set; }
         public string Descricao { get; set; }
-        public List<ParticipanteDto> Participantes { get; set; }
     }

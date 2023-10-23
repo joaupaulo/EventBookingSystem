@@ -4,7 +4,6 @@ namespace EventBookingSystem.Model;
 
     public class Participante
     {
-        public ObjectId ParticipanteId { get; private set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string Telefone { get; private set; }
@@ -22,7 +21,6 @@ namespace EventBookingSystem.Model;
                 throw new ArgumentException("O email do participante não é válido.", nameof(email));
 
 
-            ParticipanteId = ObjectId.GenerateNewId();
             Nome = nome;
             Email = email;
             Telefone = telefone;

@@ -1,6 +1,7 @@
 ﻿using EventBookingSystem.Model;
 using EventBookingSystem.Model.DTOs;
 using EventBookingSystem.Service.Interface;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventBookingSystem.Controllers;
@@ -18,15 +19,102 @@ public class EventController : ControllerBase
         _logger = logger;
     }
     
-    [HttpGet("key/{key}")]
-    public ActionResult<Evento> GetEventByKey()
+    [HttpGet("eventkey/{key}")]
+    public async Task<IActionResult> GetEventByKey(string Key)
     {
-        return Ok();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(Key))
+            {
+                return BadRequest();
+            }
+           
+            var evento = await _eventService.GetEvents<EventoDto>(Key);
+
+            if (evento == null)
+            {
+                return NotFound();
+            }
+            return Ok(evento);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while getting event per key.");
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
+    }
+    [HttpGet("getAllEvents")]
+    public async Task<IActionResult> GetAllEvents()
+    {
+        try
+        {
+
+            var evento = await _eventService.GetAllEvents<EventoDto>();
+
+            if (evento == null)
+            {
+                return NotFound();
+            }
+            return Ok(evento);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while getting all events.");
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
+    }
+    
+    [HttpDelete("{eventKey}")]
+    public async Task<IActionResult> DeleteEvent(string Key)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(Key))
+            {
+                return BadRequest();
+            }
+
+            var deleteEvent = await _eventService.DeleteEvent<EventoDto>(Key);
+
+            if (!deleteEvent)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while delete event.");
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
     }
 
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateEvent(string requestFilterDefField, string requestFilterDefParam, string FilterUpdatField, string FilterUpdateParam)
+    {
+        try
+        {
+            bool result = await _eventService.UpdateEvent<Evento>(requestFilterDefField, requestFilterDefParam, 
+                FilterUpdatField, FilterUpdateParam
+            );
+
+            if (result)
+            {
+                return Ok("Update Event Sucess");
+            }
+
+            return NotFound("Event not found or cant be update.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Ocorreu um erro ao atualizar o evento: " + ex.Message);
+        }
+    }
+    
     
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(EventoDto evento)
+    public async Task<IActionResult> CreateEvent(EventoDto eventoDto)
     {
         try
         {
@@ -34,21 +122,19 @@ public class EventController : ControllerBase
             {
                 return BadRequest(ModelState);
             }
-
-            var createdEvent = await _eventService.CreateEvent<EventoDto>(evento);
-
-            _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent.EventoId}");
-
-
-            return Ok();
+            
+           var createdEvent = await _eventService.CreateEvent(eventoDto);
+           
+           _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent.EventoId}");
+            
+            return Ok(createdEvent);
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            throw;
+            _logger.LogError(ex, "An error occurred while create event.");
+            return StatusCode(500, "An error occurred while processing your request.");
         }
-       
 
     }
-
+    
 }

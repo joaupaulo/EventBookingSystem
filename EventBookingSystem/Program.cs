@@ -1,6 +1,8 @@
 using System.Text;
+using EventBookingSystem.BsonFilter;
 using EventBookingSystem.Configurations;
 using EventBookingSystem.Configurations.Identity;
+using EventBookingSystem.Model;
 using EventBookingSystem.Model.MongoDbConfig;
 using EventBookingSystem.Repository;
 using EventBookingSystem.Service;
@@ -16,8 +18,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<IRepositoryBase, RepositoryBase>();
-builder.Services.AddTransient<IEventService, EventService>();
+builder.Services.AddSingleton<IRepositoryBase, RepositoryBase>();
+builder.Services.AddSingleton<IEventService, EventService>();
+builder.Services.AddSingleton<IBsonFilter<Evento>, BsonFilter<Evento>>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()

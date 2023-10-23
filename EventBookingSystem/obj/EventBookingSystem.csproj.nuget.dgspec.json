@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
         "projectName": "EventBookingSystem",
-        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
         "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\obj\\",
+        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t780VEXFcoDFSjFmmIWVUqZ/DaLQVd0VTRxcvt8P9bXo5ld53udh6d6K+9NaDy3NHYH+FfcuGRy6DU4MKiT4EQ==",
+  "dgSpecHash": "+OetZdpkcvPM1tunZR7BOTdX2lXNz24FE0T9suR28BI6MlZmGHn3jA2xPBsJZBR3E6kbiObW8KneecIo19GWDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\JoãoPaulodosSantosSa\\RiderProjects\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+  "projectFilePath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\aspnetcore.identity.mongodbcore\\3.1.2\\aspnetcore.identity.mongodbcore.3.1.2.nupkg.sha512",
     "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",

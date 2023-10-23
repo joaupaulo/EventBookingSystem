@@ -37,7 +37,6 @@ public class RepositoryBase : IRepositoryBase
     
     public async Task<T> CreateDocumentAsync<T>(string collectionName, T Document)
     {
-        var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
@@ -52,16 +51,11 @@ public class RepositoryBase : IRepositoryBase
 
             throw;
         }
-        finally
-        {
-            _logger.LogInformation($"Find done in collection{collectionName}, have find {count}");
-        }
     }
     
 
     public async Task<List<T>> GetAllDocument<T>(string collectionName)
     {
-        var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
@@ -69,8 +63,8 @@ public class RepositoryBase : IRepositoryBase
             var filter = new BsonDocument();
 
             var result = await collection.FindAsync<T>(filter);
-
-            count = result.ToList().Count();
+            
+            result.ToList().Count();
 
             return result.ToList();
         }
@@ -80,21 +74,14 @@ public class RepositoryBase : IRepositoryBase
 
             throw;
         }
-        finally
-        {
-            _logger.LogInformation($"Find done in collection{collectionName}, have find {count}");
-        }
     }
 
-    public async Task<T> GetDocument<T>(string collectionName, Evento evento)
+    public async Task<T> GetDocument<T>(string collectionName, FilterDefinition<T> filter)
     {
-        var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
-
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", evento.EventoId);
-
+            
             var result = await collection.Find(filter).FirstOrDefaultAsync();
 
             return result;
@@ -105,21 +92,15 @@ public class RepositoryBase : IRepositoryBase
 
             throw;
         }
-        finally
-        {
-            _logger.LogInformation($"Find done in collection{collectionName}");
-        }
-
     }
 
-    public async Task<bool> UpdateDocument<T>(string collectionName,  BsonDocument filterUpdate, BsonDocument filter)
+    public async Task<bool> UpdateDocument<T>(string collectionName, FilterDefinition<T> filter, UpdateDefinition<T> update)
     {
-        var count = 0;
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
 
-            var result = await collection.UpdateOneAsync(filter, filterUpdate);
+            var result = await collection.UpdateOneAsync(filter, update);
 
             return result.ModifiedCount > 0;
         }
@@ -129,20 +110,14 @@ public class RepositoryBase : IRepositoryBase
 
             throw;
         }
-        finally
-        {
-            _logger.LogInformation($"Find done in collection{collectionName}");
-        }
     }
    
-    public async Task<bool> DeleteDocument<T>(string collectionName, Evento evento)
+    public async Task<bool> DeleteDocument<T>(string collectionName, FilterDefinition<T> filter)
     {
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
-
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("EventoId", evento.EventoId);
-
+            
             var result = await collection.DeleteOneAsync(filter);
 
             return result.DeletedCount > 0;
@@ -151,10 +126,6 @@ public class RepositoryBase : IRepositoryBase
         {
             Console.WriteLine(e);
             throw;
-        }
-        finally
-        {
-            _logger.LogInformation($"Delete done in collection {collectionName}");
         }
     }
 }

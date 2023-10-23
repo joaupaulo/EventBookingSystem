@@ -1,9 +1,11 @@
-﻿using EventBookingSystem.Model;
+﻿using EventBookingSystem.BsonFilter;
+using EventBookingSystem.Model;
 using EventBookingSystem.Model.DTOs;
 using EventBookingSystem.Repository;
 using EventBookingSystem.Service.Interface;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace EventBookingSystem.Service;
 
@@ -12,13 +14,15 @@ public class EventService : RepositoryBase, IEventService
     private readonly ILogger<EventService> _logger;
     private readonly IRepositoryBase _repositoryBase;
     private string _collectionName = "event-collection";
+    private readonly IBsonFilter<Evento> _bsonFilter;
 
-    public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger ) : base(logger, ConnectionStringType.Eventos )
+    public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger, IBsonFilter<Evento> bsonFilter) : base(logger, ConnectionStringType.Eventos )
     {
          _repositoryBase = repositoryBase;
+         _bsonFilter = bsonFilter;
     }
     
-    public async Task<EventoDto> CreateEvent<EventoDto>(EventoDto evento)
+    public async Task<Evento> CreateEvent(EventoDto evento)
     {
         try
         {
@@ -27,18 +31,18 @@ public class EventService : RepositoryBase, IEventService
                 throw new NullReferenceException("");
             }
             
-            var result = await _repositoryBase.CreateDocumentAsync<EventoDto>(_collectionName, evento );
+            var eventos =  Model.Evento.CriarNovoEvento( evento.Nome, evento.Data, evento.Local, 
+                evento.CapacidadeMaxima, evento.Preco, evento.Descricao);
+            
+            var result = await _repositoryBase.CreateDocumentAsync<Evento>(_collectionName, eventos );
           
-          return evento;
+            return result;
         }
         catch (Exception ex)
         {
             _logger.LogError($"{ex}");
             throw;
-        } finally
-        {
-            _logger.LogInformation($"Crete done in collection{_collectionName}");
-        }
+        } 
     }
     
     public async Task<List<EventoDto>> GetAllEvents<EventoDto>()
@@ -55,19 +59,17 @@ public class EventService : RepositoryBase, IEventService
             _logger.LogError($"{ex}");
             throw;
         }
-        finally
-        {
-            _logger.LogInformation($"FindAll done in collection{_collectionName}");
-        }
-       
+
     }
     
-    public async Task<EventoDto> GetEvents<EventoDto>(Evento eventoDto)
+    public async Task<EventoDto> GetEvents<EventoDto>(string eventKey)
     {
         try
         {
-            var result = await _repositoryBase.GetDocument<EventoDto>(_collectionName,eventoDto);
-
+            var filterGetEvent = _bsonFilter.FilterDefinition<EventoDto>("EventKey", eventKey); 
+           
+            var result = await _repositoryBase.GetDocument<EventoDto>(_collectionName,filterGetEvent);
+            
             return result;
 
         }
@@ -75,17 +77,15 @@ public class EventService : RepositoryBase, IEventService
         {
             _logger.LogError($"{ex}");
             throw;
-        }
-        finally
-        {
-            _logger.LogInformation($"FindAll done in collection{_collectionName}");
         }
     }
-    public async Task<bool> DeleteEvent<T>(Evento evento)
+    public async Task<bool> DeleteEvent<T>(string eventKey)
     {
         try
         {
-            var result = await _repositoryBase.DeleteDocument<T>(_collectionName, evento);
+            var filterDeletEvent = _bsonFilter.FilterDefinition<EventoDto>("EventKey", eventKey);
+            
+            var result = await _repositoryBase.DeleteDocument<EventoDto>(_collectionName, filterDeletEvent);
 
             return result;
         }
@@ -93,18 +93,16 @@ public class EventService : RepositoryBase, IEventService
         {
             _logger.LogError($"{ex}");
             throw;
-        }
-        finally
-        {
-            _logger.LogInformation($"Delete done in collection{_collectionName}");
         }
     }
     
-    public async Task<bool> UpdateEvent<T>(BsonDocument filterUpdate, BsonDocument filter)
+    public async Task<bool> UpdateEvent<T>(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField, 
+        string filterUpdateDefinitionParan)
     {
         try
         {
-            var result = await _repositoryBase.UpdateDocument<T>(_collectionName, filterUpdate, filter);
+         var filterUpdate =  _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan,  out UpdateDefinition<Evento> update);
+            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName, filterUpdate, update);
 
             return result;
         }
@@ -112,10 +110,6 @@ public class EventService : RepositoryBase, IEventService
         {
             _logger.LogError($"{ex}");
             throw;
-        }
-        finally
-        {
-            _logger.LogInformation($"Update done in collection{_collectionName}");
         }
     }
 }

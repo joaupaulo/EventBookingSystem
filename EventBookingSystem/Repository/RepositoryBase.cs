@@ -45,9 +45,9 @@ public class RepositoryBase : IRepositoryBase
 
             return Document;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
+            _logger.LogError($"{ex}");
 
             throw;
         }
@@ -68,9 +68,9 @@ public class RepositoryBase : IRepositoryBase
 
             return result.ToList();
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
+            _logger.LogError($"{ex}");
 
             throw;
         }
@@ -86,9 +86,9 @@ public class RepositoryBase : IRepositoryBase
 
             return result;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
+            _logger.LogError($"{ex}");
 
             throw;
         }
@@ -104,9 +104,9 @@ public class RepositoryBase : IRepositoryBase
 
             return result.ModifiedCount > 0;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
+            _logger.LogError($"{ex}");
 
             throw;
         }
@@ -122,9 +122,9 @@ public class RepositoryBase : IRepositoryBase
 
             return result.DeletedCount > 0;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
+            _logger.LogError($"{ex}");
             throw;
         }
     }

@@ -29,7 +29,7 @@ public class EventController : ControllerBase
                 return BadRequest();
             }
            
-            var evento = await _eventService.GetEvents<EventoDto>(Key);
+            var evento = await _eventService.GetEvents(Key);
 
             if (evento == null)
             {
@@ -49,7 +49,7 @@ public class EventController : ControllerBase
         try
         {
 
-            var evento = await _eventService.GetAllEvents<EventoDto>();
+            var evento = await _eventService.GetAllEvents();
 
             if (evento == null)
             {
@@ -74,7 +74,7 @@ public class EventController : ControllerBase
                 return BadRequest();
             }
 
-            var deleteEvent = await _eventService.DeleteEvent<EventoDto>(Key);
+            var deleteEvent = await _eventService.DeleteEvent(Key);
 
             if (!deleteEvent)
             {
@@ -90,7 +90,7 @@ public class EventController : ControllerBase
         }
     }
 
-    [HttpPut("update")]
+    [HttpPatch("update")]
     public async Task<IActionResult> UpdateEvent(string requestFilterDefField, string requestFilterDefParam, string FilterUpdatField, string FilterUpdateParam)
     {
         try
@@ -108,13 +108,13 @@ public class EventController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "Ocorreu um erro ao atualizar o evento: " + ex.Message);
+            return StatusCode(500, "An error occurred while updating the event: " + ex.Message);
         }
     }
     
     
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(EventoDto eventoDto)
+    public async Task<IActionResult> CreateEvent(Evento eventoDto)
     {
         try
         {
@@ -125,7 +125,7 @@ public class EventController : ControllerBase
             
            var createdEvent = await _eventService.CreateEvent(eventoDto);
            
-           _logger.LogInformation($"Evento criado com sucesso. ID: {createdEvent.EventoId}");
+           _logger.LogInformation($"Event created sucessfully. ID: {createdEvent.EventoId}");
             
             return Ok(createdEvent);
         }
@@ -134,7 +134,5 @@ public class EventController : ControllerBase
             _logger.LogError(ex, "An error occurred while create event.");
             return StatusCode(500, "An error occurred while processing your request.");
         }
-
     }
-    
 }

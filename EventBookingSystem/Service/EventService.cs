@@ -22,19 +22,16 @@ public class EventService : RepositoryBase, IEventService
          _bsonFilter = bsonFilter;
     }
     
-    public async Task<Evento> CreateEvent(EventoDto evento)
+    public async Task<Evento> CreateEvent(Evento evento)
     {
         try
         {
             if (evento == null)
             {
-                throw new NullReferenceException("");
+                throw new NullReferenceException("You sent a null object");
             }
             
-            var eventos =  Model.Evento.CriarNovoEvento( evento.Nome, evento.Data, evento.Local, 
-                evento.CapacidadeMaxima, evento.Preco, evento.Descricao);
-            
-            var result = await _repositoryBase.CreateDocumentAsync<Evento>(_collectionName, eventos );
+            var result = await _repositoryBase.CreateDocumentAsync<Evento>(_collectionName, evento );
           
             return result;
         }
@@ -45,11 +42,11 @@ public class EventService : RepositoryBase, IEventService
         } 
     }
     
-    public async Task<List<EventoDto>> GetAllEvents<EventoDto>()
+    public async Task<List<Evento>> GetAllEvents()
     {
         try
         {
-            var result = await _repositoryBase.GetAllDocument<EventoDto>(_collectionName);
+            var result = await _repositoryBase.GetAllDocument<Evento>(_collectionName);
 
             return result;
 
@@ -62,13 +59,13 @@ public class EventService : RepositoryBase, IEventService
 
     }
     
-    public async Task<EventoDto> GetEvents<EventoDto>(string eventKey)
+    public async Task<Evento> GetEvents(string eventKey)
     {
         try
         {
-            var filterGetEvent = _bsonFilter.FilterDefinition<EventoDto>("EventKey", eventKey); 
+            var filterGetEvent = _bsonFilter.FilterDefinition<Evento>("EventKey", eventKey); 
            
-            var result = await _repositoryBase.GetDocument<EventoDto>(_collectionName,filterGetEvent);
+            var result = await _repositoryBase.GetDocument<Evento>(_collectionName,filterGetEvent);
             
             return result;
 
@@ -79,13 +76,13 @@ public class EventService : RepositoryBase, IEventService
             throw;
         }
     }
-    public async Task<bool> DeleteEvent<T>(string eventKey)
+    public async Task<bool> DeleteEvent(string eventKey)
     {
         try
         {
-            var filterDeletEvent = _bsonFilter.FilterDefinition<EventoDto>("EventKey", eventKey);
+            var filterDeletEvent = _bsonFilter.FilterDefinition<Evento>("EventKey", eventKey);
             
-            var result = await _repositoryBase.DeleteDocument<EventoDto>(_collectionName, filterDeletEvent);
+            var result = await _repositoryBase.DeleteDocument<Evento>(_collectionName, filterDeletEvent);
 
             return result;
         }
@@ -102,9 +99,10 @@ public class EventService : RepositoryBase, IEventService
         try
         {
          var filterUpdate =  _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan,  out UpdateDefinition<Evento> update);
-            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName, filterUpdate, update);
-
-            return result;
+            
+         var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName, filterUpdate, update);
+            
+         return result;
         }
         catch (Exception ex)
         {

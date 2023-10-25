@@ -19,5 +19,6 @@ public class Reserva
    [FutureDate(ErrorMessage = "The event should be in future")]
    public DateTime DataReserva { get;  set; }
    public List<Participante> Participantes { get;  set; }
+   public Evento Evento { get; set; }
    
 }

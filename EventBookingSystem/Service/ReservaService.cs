@@ -13,12 +13,14 @@ public class ReservaService : RepositoryBase, IReservaService
     private readonly IRepositoryBase _repositoryBase;
     private string _collectionName = "reserva-register";
     private readonly IBsonFilter<Reserva> _bsonFilter;
+    private readonly IEventService _eventService;
 
-    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger, IBsonFilter<Reserva> bsonFilter) : base(logger, ConnectionStringType.Reserva)
+    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger, IBsonFilter<Reserva> bsonFilter, IEventService eventService) : base(logger, ConnectionStringType.Reserva)
     {
         _repositoryBase = repositoryBase;
         _logger = logger;
         _bsonFilter = bsonFilter;
+        _eventService = eventService;
     }
 
     public async Task<Reserva> CreateReserva(Reserva reserva)
@@ -29,7 +31,13 @@ public class ReservaService : RepositoryBase, IReservaService
             {
                 throw new NullReferenceException("Booking details were not provided.");
             }
-            
+
+            string eventKey = reserva.EventKey.ToString();
+
+            var getEventforMapping = await _eventService.GetEvents(eventKey);
+
+            reserva.Evento = getEventforMapping;
+
             var result = await _repositoryBase.CreateDocumentAsync<Reserva>(_collectionName, reserva);
 
             return result;

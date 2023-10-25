@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
+    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
+    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
         "projectName": "EventBookingSystem",
-        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
-        "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\obj\\",
+        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,8 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
@@ -48,6 +47,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.9, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
             },
             "MongoDB.Bson": {
               "target": "Package",
@@ -77,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

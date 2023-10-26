@@ -13,12 +13,17 @@ public class ReservaService : RepositoryBase, IReservaService
     private readonly IRepositoryBase _repositoryBase;
     private string _collectionName = "reserva-register";
     private readonly IBsonFilter<Reserva> _bsonFilter;
+    private readonly IEventService _eventService;
+    private readonly IPDFGenerator _pdfGenerator;
+    private readonly IEmailSender _emailSender;
 
-    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger, IBsonFilter<Reserva> bsonFilter) : base(logger, ConnectionStringType.Reserva)
+    public ReservaService(IRepositoryBase repositoryBase, ILogger<ReservaService> logger, IBsonFilter<Reserva> bsonFilter, IEventService eventService, IPDFGenerator pdfGenerator, IEmailSender emailSender) : base(logger, ConnectionStringType.Reserva)
     {
         _repositoryBase = repositoryBase;
         _logger = logger;
         _bsonFilter = bsonFilter;
+        _eventService = eventService;
+        _pdfGenerator = pdfGenerator;        _emailSender = emailSender;
     }
 
     public async Task<Reserva> CreateReserva(Reserva reserva)
@@ -29,8 +34,29 @@ public class ReservaService : RepositoryBase, IReservaService
             {
                 throw new NullReferenceException("Booking details were not provided.");
             }
-            
+
+            var getEventforMapping = await _eventService.GetEvents(reserva.EventKey);
+
+            if(getEventforMapping == null)
+            {
+                throw new ArgumentNullException("You be try create a reserva of event that dont exist");
+            }
+
+            reserva.Evento = getEventforMapping;
+
             var result = await _repositoryBase.CreateDocumentAsync<Reserva>(_collectionName, reserva);
+
+            //string filePath = "C:\\Users\\João Paulo\\Desktop\\Meus projetos";
+
+           var newPdf = _pdfGenerator.GeneratePDF(result);
+
+            string toAddress = "paulosantos1799@outlook.com";
+            string subject = "Sua reserva foi realizada!";
+            string body = "Olá tudo bem ? sua reserva para o evento X foi realizada";
+            string attachmentFileName = "reserva.pdf";
+            byte[] attachmentData = newPdf;
+
+            bool sentEmail = _emailSender.SendEmailWithAttachment(toAddress,subject,body,attachmentData, attachmentFileName);
 
             return result;
         }

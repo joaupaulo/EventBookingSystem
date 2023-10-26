@@ -19,16 +19,19 @@ public class EventController : ControllerBase
         _logger = logger;
     }
     
-    [HttpGet("eventkey/{key}")]
-    public async Task<IActionResult> GetEventByKey(string Key)
+    [HttpGet("eventkey/{eventKey}")]
+    public async Task<IActionResult> GetEventByKey(string eventKey)
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(Key))
+            if (string.IsNullOrWhiteSpace(eventKey))
             {
                 return BadRequest();
             }
-           
+
+            var KeyEvents = Guid.TryParse(eventKey, out var Key);
+
+
             var evento = await _eventService.GetEvents(Key);
 
             if (evento == null)
@@ -125,7 +128,7 @@ public class EventController : ControllerBase
             
            var createdEvent = await _eventService.CreateEvent(eventoDto);
            
-           _logger.LogInformation($"Event created sucessfully. ID: {createdEvent.EventoId}");
+           _logger.LogInformation($"Event created sucessfully. ID: {createdEvent.EventKey}");
             
             return Ok(createdEvent);
         }

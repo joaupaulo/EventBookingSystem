@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace EventBookingSystem.Model.Validations;
 
@@ -8,8 +9,8 @@ public class EmailAttribute : ValidationAttribute
     {
         try
         {
-            var addr = new System.Net.Mail.MailAddress(value.ToString());
-            return addr.Address == value;
+            var addr = new MailAddress(value.ToString());
+            return true;
         }
         catch 
         {

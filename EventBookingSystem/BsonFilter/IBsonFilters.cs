@@ -8,4 +8,6 @@ public interface IBsonFilter<T>
         string filterUpdateDefinitionField, string filterUpdateDefinitionParam, out UpdateDefinition<T> update);
 
     FilterDefinition<T> FilterDefinition<T>(string filterDefinitionField, string filterDefinitionParam);
+    FilterDefinition<T> FilterDefinition<T>(string filterDefinitionField, Guid filterDefinitionParam);
+
 }

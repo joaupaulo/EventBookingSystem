@@ -6,7 +6,7 @@ namespace EventBookingSystem.Service.Interface;
 public interface IEventService
 {
     Task<Evento> CreateEvent(Evento evento);
-    Task<Evento> GetEvents(string eventKey);
+    Task<Evento> GetEvents(Guid eventKey);
     Task<bool> DeleteEvent(string eventKey);
     Task<List<Evento>> GetAllEvents();
 

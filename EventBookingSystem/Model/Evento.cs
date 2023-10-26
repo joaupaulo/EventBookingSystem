@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using EventBookingSystem.Model.Validations;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace EventBookingSystem.Model;
 
 public class Evento
 {
-    public ObjectId EventoId { get;  set; }
+    [BsonId]
+    public ObjectId _Id { get; set; }
     [Required(ErrorMessage = "Send a event key")]
     public Guid EventKey { get;  set; }
     [Required(ErrorMessage = "Fill name of event")]
@@ -20,6 +22,4 @@ public class Evento
     [Range(0, Double.MaxValue, ErrorMessage = "The maximum capacity must be greater than zero")]
     public decimal Preco { get;  set; }
     public string Descricao { get;  set; }
-
-   
 }

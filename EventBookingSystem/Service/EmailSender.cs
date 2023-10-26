@@ -7,6 +7,11 @@ namespace EventBookingSystem.Service
 {
     public class EmailSender : IEmailSender
     {
+        private readonly ILogger<EmailSender> _logger;    
+        public EmailSender(ILogger<EmailSender> logger) 
+        {
+           _logger = logger;
+        }
         public bool SendEmailWithAttachment(string toAddress, string subject, string body, byte[] attachmentData, string attachmentFileName)
         {
             try
@@ -32,8 +37,8 @@ namespace EventBookingSystem.Service
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error while send email: " + ex.Message);
                 return false;
-                Console.WriteLine("Error while send email: " + ex.Message);
             }
         }
     }

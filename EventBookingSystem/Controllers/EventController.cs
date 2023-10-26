@@ -1,6 +1,7 @@
 ﻿using EventBookingSystem.Model;
 using EventBookingSystem.Model.DTOs;
 using EventBookingSystem.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace EventBookingSystem.Controllers;
 
 [ApiController]
 [Route("/event")]
+[Authorize]
 public class EventController : ControllerBase
 {
     private readonly IEventService _eventService;

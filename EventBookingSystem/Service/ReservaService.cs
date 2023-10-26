@@ -23,7 +23,8 @@ public class ReservaService : RepositoryBase, IReservaService
         _logger = logger;
         _bsonFilter = bsonFilter;
         _eventService = eventService;
-        _pdfGenerator = pdfGenerator;        _emailSender = emailSender;
+        _pdfGenerator = pdfGenerator;
+        _emailSender = emailSender;
     }
 
     public async Task<Reserva> CreateReserva(Reserva reserva)
@@ -46,17 +47,21 @@ public class ReservaService : RepositoryBase, IReservaService
 
             var result = await _repositoryBase.CreateDocumentAsync<Reserva>(_collectionName, reserva);
 
-            //string filePath = "C:\\Users\\João Paulo\\Desktop\\Meus projetos";
-
            var newPdf = _pdfGenerator.GeneratePDF(result);
 
-            string toAddress = "paulosantos1799@outlook.com";
+            var emailParticipantes = result.Participantes.Select( x => x.Email).ToList();
+
             string subject = "Sua reserva foi realizada!";
             string body = "Olá tudo bem ? sua reserva para o evento X foi realizada";
             string attachmentFileName = "reserva.pdf";
             byte[] attachmentData = newPdf;
 
-            bool sentEmail = _emailSender.SendEmailWithAttachment(toAddress,subject,body,attachmentData, attachmentFileName);
+            foreach (var email in emailParticipantes)
+            {
+                string toAddress = email;
+             
+                bool sentEmail = _emailSender.SendEmailWithAttachment(toAddress, subject, body, attachmentData, attachmentFileName);
+            }
 
             return result;
         }

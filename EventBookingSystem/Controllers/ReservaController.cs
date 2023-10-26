@@ -1,11 +1,13 @@
 ﻿using EventBookingSystem.Model;
 using EventBookingSystem.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventBookingSystem.Configurations;
 
 [ApiController]
 [Route("/reserva")]
+[Authorize]
 public class ReservaController : ControllerBase
 {
     private readonly IReservaService _reservaService;

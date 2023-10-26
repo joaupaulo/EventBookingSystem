@@ -2,6 +2,6 @@
 {
     public interface IEmailSender
     {
-       public void SendEmailWithAttachment(string toAddress, string subject, string body, byte[] attachmentData, string attachmentFileName);
+       public bool SendEmailWithAttachment(string toAddress, string subject, string body, byte[] attachmentData, string attachmentFileName);
     }
 }

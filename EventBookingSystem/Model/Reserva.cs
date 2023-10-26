@@ -13,7 +13,6 @@ public class Reserva
    public Guid ReservaKey { get; set; }
    [Required(ErrorMessage = "You sent event key null")]
    public Guid EventKey { get;  set; }
-   public Evento EventoId { get;  set; }
    [Range(1, Int32.MaxValue, ErrorMessage = "Number of participants must be greater than zero.")]
    public int NumeroParticipante { get;  set; }
    [FutureDate(ErrorMessage = "The event should be in future")]

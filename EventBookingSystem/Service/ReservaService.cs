@@ -35,9 +35,7 @@ public class ReservaService : RepositoryBase, IReservaService
                 throw new NullReferenceException("Booking details were not provided.");
             }
 
-            string eventKey = reserva.EventKey.ToString();
-
-            var getEventforMapping = await _eventService.GetEvents(eventKey);
+            var getEventforMapping = await _eventService.GetEvents(reserva.EventKey);
 
             if(getEventforMapping == null)
             {
@@ -58,7 +56,7 @@ public class ReservaService : RepositoryBase, IReservaService
             string attachmentFileName = "reserva.pdf";
             byte[] attachmentData = newPdf;
 
-            _emailSender.SendEmailWithAttachment(toAddress,subject,body,attachmentData, attachmentFileName);
+            bool sentEmail = _emailSender.SendEmailWithAttachment(toAddress,subject,body,attachmentData, attachmentFileName);
 
             return result;
         }

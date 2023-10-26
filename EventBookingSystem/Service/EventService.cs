@@ -59,7 +59,7 @@ public class EventService : RepositoryBase, IEventService
 
     }
     
-    public async Task<Evento> GetEvents(string eventKey)
+    public async Task<Evento> GetEvents(Guid eventKey)
     {
         try
         {

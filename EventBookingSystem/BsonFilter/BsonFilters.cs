@@ -9,7 +9,13 @@ public class BsonFilter<T> : IBsonFilter<T>
         FilterDefinition<T> filter = Builders<T>.Filter.Eq(filterDefinitionField, filterDefinitionParam);
         return filter;
     }
-    
+
+    public FilterDefinition<T> FilterDefinition<T>(string filterDefinitionField, Guid filterDefinitionParam)
+    {
+        FilterDefinition<T> filter = Builders<T>.Filter.Eq(filterDefinitionField, filterDefinitionParam);
+        return filter;
+    }
+
     public FilterDefinition<T> FilterDefinitionUpdate(string filterDefinitionField, string filterDefinitionParam,
         string filterUpdateDefinitionField, string filterUpdateDefinitionParam, out UpdateDefinition<T> update)
     {

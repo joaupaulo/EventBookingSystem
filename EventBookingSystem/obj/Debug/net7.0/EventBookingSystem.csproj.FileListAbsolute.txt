@@ -157,3 +157,5 @@ C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.pdb
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.genruntimeconfig.cache
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\ref\EventBookingSystem.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\itextsharp.dll

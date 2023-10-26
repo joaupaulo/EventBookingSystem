@@ -14,5 +14,7 @@ namespace EventBookingSystem.Model;
         public string Telefone { get;  set; }
         [FutureDate]
         public DateTime DataInscricao { get;  set; }
+        [Cpf(ErrorMessage = "Invalid CPF")]
+        public string CPF { get; set; }
         
     }

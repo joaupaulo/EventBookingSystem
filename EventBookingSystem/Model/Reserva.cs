@@ -18,6 +18,8 @@ public class Reserva
    public int NumeroParticipante { get;  set; }
    [FutureDate(ErrorMessage = "The event should be in future")]
    public DateTime DataReserva { get;  set; }
+   [UniqueParticipants(ErrorMessage = "Participants must be unique by email.")]
+   [UniqueCPF(ErrorMessage = "CPF must be unique.")]
    public List<Participante> Participantes { get;  set; }
    public Evento Evento { get; set; }
    

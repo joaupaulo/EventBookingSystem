@@ -20,6 +20,4 @@ public class Evento
     [Range(0, Double.MaxValue, ErrorMessage = "The maximum capacity must be greater than zero")]
     public decimal Preco { get;  set; }
     public string Descricao { get;  set; }
-
-   
 }

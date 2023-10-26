@@ -21,6 +21,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryBase, RepositoryBase>();
 builder.Services.AddSingleton<IEventService, EventService>();
 builder.Services.AddSingleton<IBsonFilter<Evento>, BsonFilter<Evento>>();
+builder.Services.AddSingleton<IPDFGenerator,PDFGenerator>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()

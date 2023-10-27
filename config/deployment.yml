@@ -16,6 +16,8 @@ spec:
       spec:
         containers:
         - name: eventbookingsystem
-          image: joaupaulo/eventbookingsystem:latest
+          image: <IMAGE>
+          ports:
+            - containerPort: 80
          
            

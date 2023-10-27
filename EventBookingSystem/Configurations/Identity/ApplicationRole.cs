@@ -6,5 +6,5 @@ namespace EventBookingSystem.Configurations.Identity;
 [CollectionName("Roles")]
 public class ApplicationRole : MongoIdentityRole<Guid>
 {
-  
+
 }

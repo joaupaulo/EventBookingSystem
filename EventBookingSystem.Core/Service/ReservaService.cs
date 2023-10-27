@@ -2,7 +2,7 @@
 using EventBookingSystem.Model;
 using EventBookingSystem.Repository;
 using EventBookingSystem.Service.Interface;
-using MongoDB.Bson;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
 namespace EventBookingSystem.Service;
@@ -38,7 +38,7 @@ public class ReservaService : RepositoryBase, IReservaService
 
             var getEventforMapping = await _eventService.GetEvents(reserva.EventKey);
 
-            if(getEventforMapping == null)
+            if (getEventforMapping == null)
             {
                 throw new ArgumentNullException("You be try create a reserva of event that dont exist");
             }
@@ -47,9 +47,9 @@ public class ReservaService : RepositoryBase, IReservaService
 
             var result = await _repositoryBase.CreateDocumentAsync<Reserva>(_collectionName, reserva);
 
-           var newPdf = _pdfGenerator.GeneratePDF(result);
+            var newPdf = _pdfGenerator.GeneratePDF(result);
 
-            var emailParticipantes = result.Participantes.Select( x => x.Email).ToList();
+            var emailParticipantes = result.Participantes.Select(x => x.Email).ToList();
 
             string subject = "Sua reserva foi realizada!";
             string body = "Olá tudo bem ? sua reserva para o evento X foi realizada";
@@ -59,7 +59,7 @@ public class ReservaService : RepositoryBase, IReservaService
             foreach (var email in emailParticipantes)
             {
                 string toAddress = email;
-             
+
                 bool sentEmail = _emailSender.SendEmailWithAttachment(toAddress, subject, body, attachmentData, attachmentFileName);
             }
 
@@ -71,8 +71,8 @@ public class ReservaService : RepositoryBase, IReservaService
             throw;
         }
     }
-    
-      public async Task<List<Reserva>> GetAllReservas()
+
+    public async Task<List<Reserva>> GetAllReservas()
     {
         try
         {
@@ -87,28 +87,28 @@ public class ReservaService : RepositoryBase, IReservaService
         }
     }
 
-      public async Task<Reserva> GetReserva(string reservaKey)
-      {
-          try
-          {
-              if (!Guid.TryParse(reservaKey, out Guid key))
-              {
-                  _logger.LogError("You did not send a valid key");
-                  return null; 
-              }
+    public async Task<Reserva> GetReserva(string reservaKey)
+    {
+        try
+        {
+            if (!Guid.TryParse(reservaKey, out Guid key))
+            {
+                _logger.LogError("You did not send a valid key");
+                return null;
+            }
 
-              var filterGetReserva = _bsonFilter.FilterDefinition<Reserva>("ReservaKey", reservaKey);
-              
-              var result = await _repositoryBase.GetDocument<Reserva>(_collectionName, filterGetReserva);
+            var filterGetReserva = _bsonFilter.FilterDefinition<Reserva>("ReservaKey", reservaKey);
 
-              return result;
-          }
-          catch (Exception ex)
-          {
-              _logger.LogError($"{ex}");
-              throw;
-          }
-      }
+            var result = await _repositoryBase.GetDocument<Reserva>(_collectionName, filterGetReserva);
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"{ex}");
+            throw;
+        }
+    }
 
     public async Task<bool> DeleteReserva(string reservaKey)
     {
@@ -119,9 +119,9 @@ public class ReservaService : RepositoryBase, IReservaService
                 _logger.LogError("eventKey não é um Guid válido.");
                 return false;
             }
-           
+
             var filterDeletReserva = _bsonFilter.FilterDefinition<Reserva>("ReservaKey", reservaKey);
-            
+
             var result = await _repositoryBase.DeleteDocument<Reserva>(_collectionName, filterDeletReserva);
 
             return result;
@@ -133,12 +133,12 @@ public class ReservaService : RepositoryBase, IReservaService
         }
     }
 
-    public async Task<bool> UpdateReserva(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField, 
+    public async Task<bool> UpdateReserva(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField,
         string filterUpdateDefinitionParan)
     {
         try
         {
-            var filterUpdate =  _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan,  out UpdateDefinition<Reserva> update);
+            var filterUpdate = _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan, out UpdateDefinition<Reserva> update);
 
             var result = await _repositoryBase.UpdateDocument<Reserva>(_collectionName, filterUpdate, update);
 

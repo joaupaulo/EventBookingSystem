@@ -18,8 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Model\DTOs\EventoDto.cs" />
-      <Compile Remove="Model\DTOs\ParticipanteDto.cs" />
+      <ProjectReference Include="..\EventBookingSystem.Core\EventBookingSystem.Core.csproj" />
     </ItemGroup>
 
 </Project>

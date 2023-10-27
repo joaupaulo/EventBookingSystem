@@ -2,7 +2,7 @@
 
 public enum ConnectionStringType
 {
-Eventos,
-Reserva,
-Home
+    Eventos,
+    Reserva,
+    Home
 }

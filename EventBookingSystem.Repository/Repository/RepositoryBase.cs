@@ -1,11 +1,7 @@
-﻿using System.Xml.XPath;
-using EventBookingSystem.Model;
-using EventBookingSystem.Model.DTOs;
-using EventBookingSystem.Model.MongoDbConfig;
+﻿using EventBookingSystem.Model;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
 
 namespace EventBookingSystem.Repository;
 
@@ -16,7 +12,7 @@ public class RepositoryBase : IRepositoryBase
     protected readonly MongoClientSettings MongoClientSettings;
     private string ConnectionString => "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin";
 
-    public RepositoryBase(ILogger<RepositoryBase> logger,ConnectionStringType connectionStringType = ConnectionStringType.Eventos)
+    public RepositoryBase(ILogger<RepositoryBase> logger, ConnectionStringType connectionStringType = ConnectionStringType.Eventos)
     {
         MongoClientSettings = MongoClientSettings.FromConnectionString(ConnectionString);
         _logger = logger;
@@ -34,14 +30,14 @@ public class RepositoryBase : IRepositoryBase
         }
 
     }
-    
+
     public async Task<T> CreateDocumentAsync<T>(string collectionName, T Document)
     {
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
-            
-             await collection.InsertOneAsync(Document);
+
+            await collection.InsertOneAsync(Document);
 
             return Document;
         }
@@ -52,7 +48,7 @@ public class RepositoryBase : IRepositoryBase
             throw;
         }
     }
-    
+
 
     public async Task<List<T>> GetAllDocument<T>(string collectionName)
     {
@@ -63,7 +59,7 @@ public class RepositoryBase : IRepositoryBase
             var filter = new BsonDocument();
 
             var result = await collection.FindAsync<T>(filter);
-            
+
             result.ToList().Count();
 
             return result.ToList();
@@ -81,7 +77,7 @@ public class RepositoryBase : IRepositoryBase
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
-            
+
             var result = await collection.Find(filter).FirstOrDefaultAsync();
 
             return result;
@@ -111,13 +107,13 @@ public class RepositoryBase : IRepositoryBase
             throw;
         }
     }
-   
+
     public async Task<bool> DeleteDocument<T>(string collectionName, FilterDefinition<T> filter)
     {
         try
         {
             var collection = MongoDatabase.GetCollection<T>(collectionName);
-            
+
             var result = await collection.DeleteOneAsync(filter);
 
             return result.DeletedCount > 0;

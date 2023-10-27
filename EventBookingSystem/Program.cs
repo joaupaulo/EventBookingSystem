@@ -1,4 +1,3 @@
-using System.Text;
 using EventBookingSystem.BsonFilter;
 using EventBookingSystem.Configurations;
 using EventBookingSystem.Configurations.Identity;
@@ -9,6 +8,7 @@ using EventBookingSystem.Service;
 using EventBookingSystem.Service.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +23,7 @@ builder.Services.AddSingleton<IEventService, EventService>();
 builder.Services.AddSingleton<IReservaService, ReservaService>();
 builder.Services.AddSingleton<IBsonFilter<Evento>, BsonFilter<Evento>>();
 builder.Services.AddSingleton<IBsonFilter<Reserva>, BsonFilter<Reserva>>();
-builder.Services.AddSingleton<IPDFGenerator,PDFGenerator>();
+builder.Services.AddSingleton<IPDFGenerator, PDFGenerator>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbConfig)).Get<MongoDbConfig>();
@@ -38,7 +38,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-    .AddJwtBearer( jwt =>
+    .AddJwtBearer(jwt =>
     {
         var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("JwtConfig:Secret").Value);
         jwt.SaveToken = true;
@@ -49,7 +49,7 @@ builder.Services.AddAuthentication(options =>
             ValidateIssuer = false,
             ValidateTokenReplay = false,
             ValidateLifetime = true,
-            
+
         };
     });
 

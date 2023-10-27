@@ -104,6 +104,12 @@ C:\Users\JoãoPaulodosSantosSa\Desktop\EventBookingSystem\EventBookingSystem\obj
 C:\Users\JoãoPaulodosSantosSa\Desktop\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.pdb
 C:\Users\JoãoPaulodosSantosSa\Desktop\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.genruntimeconfig.cache
 C:\Users\JoãoPaulodosSantosSa\Desktop\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\ref\EventBookingSystem.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.csproj.AssemblyReference.cache
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.AssemblyInfoInputs.cache
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.AssemblyInfo.cs
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.csproj.CoreCompileInputs.cache
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\appsettings.json
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.exe
@@ -112,7 +118,9 @@ C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.dll
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.pdb
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\AspNetCore.Identity.MongoDbCore.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\DnsClient.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\itextsharp.dll
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
@@ -136,13 +144,13 @@ C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\runtimes\linux\native\libmongocrypt.so
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\runtimes\win\native\mongocrypt.dll
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.csproj.AssemblyReference.cache
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.AssemblyInfoInputs.cache
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.AssemblyInfo.cs
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.csproj.CoreCompileInputs.cache
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Core.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Domain.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Repository.dll
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Core.pdb
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Domain.pdb
+C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\EventBookingSystem.Repository.pdb
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\staticwebassets\msbuild.EventBookingSystem.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\staticwebassets\msbuild.build.EventBookingSystem.props
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.EventBookingSystem.props
@@ -157,5 +165,3 @@ C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.pdb
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\EventBookingSystem.genruntimeconfig.cache
 C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\obj\Debug\net7.0\ref\EventBookingSystem.dll
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\BouncyCastle.Crypto.dll
-C:\Users\João Paulo\Desktop\Meus projetos\EventBookingSystem\EventBookingSystem\bin\Debug\net7.0\itextsharp.dll

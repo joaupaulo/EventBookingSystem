@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: eventbookingsystem
+   labels:
+      app: eventbookingsystem
+spec:
+  replicas: 3
+  selector:
+     matchLabels:
+         app: eventbookingsystem
+  template:
+      metadata:
+         labels:
+           app: eventbookingsystem
+      spec:
+        containers:
+        - name: eventbookingsystem
+          image: <IMAGE>
+          ports:
+            - containerPort: 80
+         
+           

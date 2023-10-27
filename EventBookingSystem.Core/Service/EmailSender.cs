@@ -1,16 +1,17 @@
-﻿using System.Net.Mail;
-using System.Net.Mime;
+﻿using EventBookingSystem.Service.Interface;
+using Microsoft.Extensions.Logging;
 using System.Net;
-using EventBookingSystem.Service.Interface;
+using System.Net.Mail;
+using System.Net.Mime;
 
 namespace EventBookingSystem.Service
 {
     public class EmailSender : IEmailSender
     {
-        private readonly ILogger<EmailSender> _logger;    
-        public EmailSender(ILogger<EmailSender> logger) 
+        private readonly ILogger<EmailSender> _logger;
+        public EmailSender(ILogger<EmailSender> logger)
         {
-           _logger = logger;
+            _logger = logger;
         }
         public bool SendEmailWithAttachment(string toAddress, string subject, string body, byte[] attachmentData, string attachmentFileName)
         {
@@ -19,7 +20,7 @@ namespace EventBookingSystem.Service
                 MailMessage mail = new MailMessage();
                 SmtpClient smtpServer = new SmtpClient();
 
-                mail.From = new MailAddress("paulocolt3@outlook.com"); 
+                mail.From = new MailAddress("paulocolt3@outlook.com");
                 mail.To.Add(toAddress);
                 mail.Subject = subject;
                 mail.Body = body;
@@ -28,8 +29,8 @@ namespace EventBookingSystem.Service
                 mail.Attachments.Add(attachment);
 
                 smtpServer.Host = "smtp-mail.outlook.com";
-                smtpServer.Port = 587; 
-                smtpServer.Credentials = new NetworkCredential("paulocolt3@outlook.com", "Joaopaulo123!"); 
+                smtpServer.Port = 587;
+                smtpServer.Credentials = new NetworkCredential("paulocolt3@outlook.com", "Joaopaulo123!");
                 smtpServer.EnableSsl = true;
                 smtpServer.UseDefaultCredentials = false;
                 smtpServer.Send(mail);

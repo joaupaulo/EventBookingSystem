@@ -1,5 +1,4 @@
 ﻿using EventBookingSystem.Model;
-using iTextSharp.text;
 
 namespace EventBookingSystem.Service.Interface
 {

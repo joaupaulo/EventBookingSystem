@@ -2,14 +2,14 @@
 using EventBookingSystem.Service.Interface;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.Xml.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace EventBookingSystem.Service
 {
     public class PDFGenerator : IPDFGenerator
     {
         private readonly ILogger<PDFGenerator> _logger;
-        public  PDFGenerator(ILogger<PDFGenerator> logger) 
+        public PDFGenerator(ILogger<PDFGenerator> logger)
         {
             _logger = logger;
         }

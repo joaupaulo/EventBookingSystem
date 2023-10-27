@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
 
 namespace EventBookingSystem.Model.Validations
 {
@@ -7,7 +6,7 @@ namespace EventBookingSystem.Model.Validations
     {
         public override bool IsValid(object value)
         {
-           var cpf = value.ToString();
+            var cpf = value.ToString();
             // Remove caracteres não numéricos do CPF
             cpf = new string(cpf.Where(char.IsDigit).ToArray());
 

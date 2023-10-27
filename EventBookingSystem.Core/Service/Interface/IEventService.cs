@@ -1,5 +1,4 @@
 ﻿using EventBookingSystem.Model;
-using EventBookingSystem.Model.DTOs;
 
 namespace EventBookingSystem.Service.Interface;
 

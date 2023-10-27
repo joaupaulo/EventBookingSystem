@@ -4,6 +4,204 @@
     "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
   },
   "projects": {
+    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
+        "projectName": "EventBookingSystem.Core",
+        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
+        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
+              },
+              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
+                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "iTextSharp": {
+              "target": "Package",
+              "version": "[5.5.13.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
+        "projectName": "EventBookingSystem.Domain",
+        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.21.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
+        "projectName": "EventBookingSystem.Repository",
+        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
+        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.12, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.13.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +225,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
+                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

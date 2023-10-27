@@ -12,9 +12,9 @@ public class EmailAttribute : ValidationAttribute
             var addr = new MailAddress(value.ToString());
             return true;
         }
-        catch 
+        catch
         {
             return false;
         }
-    } 
+    }
 }

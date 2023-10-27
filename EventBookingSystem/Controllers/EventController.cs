@@ -1,8 +1,6 @@
 ﻿using EventBookingSystem.Model;
-using EventBookingSystem.Model.DTOs;
 using EventBookingSystem.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventBookingSystem.Controllers;
@@ -15,12 +13,12 @@ public class EventController : ControllerBase
     private readonly IEventService _eventService;
     private readonly ILogger<EventController> _logger;
 
-    public EventController(IEventService eventService,ILogger<EventController> logger)
+    public EventController(IEventService eventService, ILogger<EventController> logger)
     {
         _eventService = eventService;
         _logger = logger;
     }
-    
+
     [HttpGet("eventkey/{eventKey}")]
     public async Task<IActionResult> GetEventByKey(string eventKey)
     {
@@ -68,7 +66,7 @@ public class EventController : ControllerBase
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
-    
+
     [HttpDelete("{eventKey}")]
     public async Task<IActionResult> DeleteEvent(string Key)
     {
@@ -100,7 +98,7 @@ public class EventController : ControllerBase
     {
         try
         {
-            bool result = await _eventService.UpdateEvent<Evento>(requestFilterDefField, requestFilterDefParam, 
+            bool result = await _eventService.UpdateEvent<Evento>(requestFilterDefField, requestFilterDefParam,
                 FilterUpdatField, FilterUpdateParam
             );
 
@@ -116,8 +114,8 @@ public class EventController : ControllerBase
             return StatusCode(500, "An error occurred while updating the event: " + ex.Message);
         }
     }
-    
-    
+
+
     [HttpPost("Create")]
     public async Task<IActionResult> CreateEvent(Evento eventoDto)
     {
@@ -127,11 +125,11 @@ public class EventController : ControllerBase
             {
                 return BadRequest(ModelState);
             }
-            
-           var createdEvent = await _eventService.CreateEvent(eventoDto);
-           
-           _logger.LogInformation($"Event created sucessfully. ID: {createdEvent.EventKey}");
-            
+
+            var createdEvent = await _eventService.CreateEvent(eventoDto);
+
+            _logger.LogInformation($"Event created sucessfully. ID: {createdEvent.EventKey}");
+
             return Ok(createdEvent);
         }
         catch (Exception ex)

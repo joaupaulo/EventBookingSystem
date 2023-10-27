@@ -1,7 +1,7 @@
 ﻿namespace EventBookingSystem.Configurations;
 
-public class JwtConfig 
+public class JwtConfig
 {
-public string Secret { get; set; } 
+    public string Secret { get; set; }
 
 }

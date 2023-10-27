@@ -28,11 +28,11 @@ public class ReservaController : ControllerBase
             {
                 return BadRequest(ModelState);
             }
-            
-            var createdReserva= await _reservaService.CreateReserva(reserva);
-           
+
+            var createdReserva = await _reservaService.CreateReserva(reserva);
+
             _logger.LogInformation($"Reserva created sucessfully. ID: {createdReserva}");
-            
+
             return Ok(createdReserva);
         }
         catch (Exception ex)
@@ -41,7 +41,7 @@ public class ReservaController : ControllerBase
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
-    
+
     [HttpGet("reservaKey/{key}")]
     public async Task<IActionResult> GetReservaByKey(string key)
     {
@@ -65,7 +65,7 @@ public class ReservaController : ControllerBase
         {
             _logger.LogError(ex, "An error occurred while getting reserva per key.");
             return StatusCode(500, "An error occurred while processing your request.");
-        } 
+        }
     }
 
     [HttpGet("getAllReservas")]
@@ -114,13 +114,13 @@ public class ReservaController : ControllerBase
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
-    
+
     [HttpPatch("update")]
     public async Task<IActionResult> UpdateEvent(string requestFilterDefField, string requestFilterDefParam, string FilterUpdatField, string FilterUpdateParam)
     {
         try
         {
-            bool result = await _reservaService.UpdateReserva(requestFilterDefField, requestFilterDefParam, 
+            bool result = await _reservaService.UpdateReserva(requestFilterDefField, requestFilterDefParam,
                 FilterUpdatField, FilterUpdateParam
             );
 
@@ -136,5 +136,5 @@ public class ReservaController : ControllerBase
             return StatusCode(500, "An error occurred while updating the reserva : " + ex.Message);
         }
     }
-    
-    }
+
+}

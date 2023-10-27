@@ -60,6 +60,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    Console.WriteLine("Deployment done in develop");
 }
 
 app.UseHttpsRedirection();

@@ -29,3 +29,8 @@
 - Swagger
 - Testes Unitários
 
+# Oque foi feito em Devops ? 
+Realizamos a configuração do CI/CD com o GitActions, então basicamente quando o Git Actions rodar o workflow configurado, irá ser feito um deploy automatico e seguro na Digital Ocean.
+
+# Como é feito o Deploy na Digital Ocean por baixo dos panos ?
+Basicamente publicamos uma imagem dockerizada no Container Registry na Digital Ocean, nisso o Container Registry manda a imagem para o Kubernetes.

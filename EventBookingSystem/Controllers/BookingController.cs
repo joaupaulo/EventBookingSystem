@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EventBookingSystem.Configurations;
 
 [ApiController]
-[Route("/reserva")]
+[Route("/booking")]
 [Authorize]
 public class BookingController : ControllerBase
 {
@@ -31,18 +31,18 @@ public class BookingController : ControllerBase
 
             var createdReserva = await _bookingService.CreateReserva(reserva);
 
-            _logger.LogInformation($"Reserva created sucessfully. ID: {createdReserva}");
+            _logger.LogInformation($"Booking created sucessfully. ID: {createdReserva}");
 
             return Ok(createdReserva);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while create reserva.");
+            _logger.LogError(ex, "An error occurred while create booking.");
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
 
-    [HttpGet("reservaKey/{key}")]
+    [HttpGet("bookingKey/{key}")]
     public async Task<IActionResult> GetReservaByKey(string key)
     {
         try
@@ -52,13 +52,13 @@ public class BookingController : ControllerBase
                 return BadRequest();
             }
 
-            if (!Guid.TryParse(key , out Guid reservaKey))
+            if (!Guid.TryParse(key , out Guid bookingKey))
             {
                 _logger.LogError("You did not send a valid key");
                 return BadRequest();
             }
 
-            var reserva = await _bookingService.GetReserva(reservaKey);
+            var reserva = await _bookingService.GetReserva(bookingKey);
 
             if (reserva == null)
             {
@@ -69,12 +69,12 @@ public class BookingController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while getting reserva per key.");
+            _logger.LogError(ex, "An error occurred while getting booking per key.");
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
 
-    [HttpGet("getAllReservas")]
+    [HttpGet("getAllBooking")]
     public async Task<IActionResult> GetAllReserva()
     {
         try
@@ -90,12 +90,12 @@ public class BookingController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while getting all reservas.");
+            _logger.LogError(ex, "An error occurred while getting all booking.");
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
 
-    [HttpDelete("{reservaKey}")]
+    [HttpDelete("{bookingKey}")]
     public async Task<IActionResult> DeleteReserva(string key)
     {
         try
@@ -107,7 +107,7 @@ public class BookingController : ControllerBase
 
             if (!Guid.TryParse(key, out Guid reservaKey))
             {
-                _logger.LogError("eventKey não é um Guid válido.");
+                _logger.LogError("bookingKey is dont guid valid.");
                 return BadRequest();
             }
 
@@ -122,7 +122,7 @@ public class BookingController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while delete reserva.");
+            _logger.LogError(ex, "An error occurred while delete booking.");
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
@@ -138,14 +138,14 @@ public class BookingController : ControllerBase
 
             if (result)
             {
-                return Ok("Update reserva sucess");
+                return Ok("Update booking sucess");
             }
 
-            return NotFound("Reserva not found or cant be update.");
+            return NotFound("Booking not found or cant be update.");
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while updating the reserva : " + ex.Message);
+            return StatusCode(500, "An error occurred while updating the booking : " + ex.Message);
         }
     }
 

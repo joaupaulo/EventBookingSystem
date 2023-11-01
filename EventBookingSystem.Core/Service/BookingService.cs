@@ -11,7 +11,7 @@ public class BookingService : RepositoryBase, IBookingService
 {
     private readonly ILogger<BookingService> _logger;
     private readonly IRepositoryBase _repositoryBase;
-    private string _collectionName = "reserva-register";
+    private string _collectionName = Environment.GetEnvironmentVariable("BOOKING_COLLECTION");
     private readonly IBsonFilter<Booking> _bsonFilter;
     private readonly IEventService _eventService;
     private readonly IPDFGenerator _pdfGenerator;

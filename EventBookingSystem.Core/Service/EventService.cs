@@ -11,7 +11,7 @@ public class EventService : RepositoryBase, IEventService
 {
     private readonly ILogger<EventService> _logger;
     private readonly IRepositoryBase _repositoryBase;
-    private string _collectionName = "event-collection";
+    private string _collectionName = Environment.GetEnvironmentVariable("EVENT_COLLECTION");
     private readonly IBsonFilter<Event> _bsonFilter;
 
     public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger, IBsonFilter<Event> bsonFilter) : base(logger, ConnectionStringTypes.Eventos)

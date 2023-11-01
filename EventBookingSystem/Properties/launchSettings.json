@@ -16,9 +16,11 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "EVENT_COLLECTION": "event-collection",
+        "ASPNETCORE_URLS": "http://+:80",
         "BOOKING_COLLECTION": "reserva-collection",
-        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin"
+        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin",
+        "EVENT_COLLECTION": "event-collection",
+        "USER_REGISTER": "UserRegister"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7206;http://localhost:5043"
@@ -36,7 +38,11 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "http://+:80"
+        "ASPNETCORE_URLS": "http://+:80",
+        "BOOKING_COLLECTION": "reserva-collection",
+        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin",
+        "EVENT_COLLECTION": "event-collection",
+        "USER_REGISTER": "UserRegister"
       },
       "publishAllPorts": true,
       "useSSL": false
@@ -48,9 +54,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "https://localhost:7206;http://localhost:5043",
-        "BOOKING_COLLECTION": "reserva-collection",
-        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin",
-        "EVENT_COLLECTION": "event-collection"
       },
       "distributionName": ""
     }

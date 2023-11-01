@@ -10,11 +10,11 @@ public class RepositoryBase : IRepositoryBase
     private readonly ILogger<RepositoryBase> _logger;
     protected readonly IMongoDatabase MongoDatabase;
     protected readonly MongoClientSettings MongoClientSettings;
-    private string ConnectionString => "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin";
+    private string _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
     public RepositoryBase(ILogger<RepositoryBase> logger, ConnectionStringTypes connectionStringType = ConnectionStringTypes.Eventos)
     {
-        MongoClientSettings = MongoClientSettings.FromConnectionString(ConnectionString);
+        MongoClientSettings = MongoClientSettings.FromConnectionString(_connectionString);
         _logger = logger;
         switch (connectionStringType)
         {

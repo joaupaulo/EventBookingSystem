@@ -38,11 +38,7 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "http://+:80",
-        "BOOKING_COLLECTION": "reserva-collection",
-        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin",
-        "EVENT_COLLECTION": "event-collection",
-        "USER_REGISTER": "UserRegister"
+        "ASPNETCORE_URLS": "http://+:80"
       },
       "publishAllPorts": true,
       "useSSL": false

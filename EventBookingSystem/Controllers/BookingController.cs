@@ -20,7 +20,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(Booking reserva)
+    public async Task<IActionResult> CreateBooking(Booking booking)
     {
         try
         {
@@ -29,11 +29,11 @@ public class BookingController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdReserva = await _bookingService.CreateReserva(reserva);
+            var createdBooking = await _bookingService.CreateReserva(booking);
 
-            _logger.LogInformation($"Booking created sucessfully. ID: {createdReserva}");
+            _logger.LogInformation($"Booking created sucessfully. ID: {createdBooking.Id}");
 
-            return Ok(createdReserva);
+            return Ok(createdBooking);
         }
         catch (Exception ex)
         {
@@ -58,14 +58,14 @@ public class BookingController : ControllerBase
                 return BadRequest();
             }
 
-            var reserva = await _bookingService.GetReserva(bookingKey);
+            var booking = await _bookingService.GetReserva(bookingKey);
 
-            if (reserva == null)
+            if (booking == null)
             {
                 return NotFound();
             }
 
-            return Ok(reserva);
+            return Ok(booking);
         }
         catch (Exception ex)
         {
@@ -75,18 +75,18 @@ public class BookingController : ControllerBase
     }
 
     [HttpGet("getAllBooking")]
-    public async Task<IActionResult> GetAllReserva()
+    public async Task<IActionResult> GetAllBooking()
     {
         try
         {
-            var reserva = await _bookingService.GetAllReservas();
+            var booking = await _bookingService.GetAllReservas();
 
-            if (reserva == null)
+            if (booking == null)
             {
                 return NotFound();
             }
 
-            return Ok(reserva);
+            return Ok(booking);
         }
         catch (Exception ex)
         {
@@ -96,7 +96,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpDelete("{bookingKey}")]
-    public async Task<IActionResult> DeleteReserva(string key)
+    public async Task<IActionResult> DeleteBooking(string key)
     {
         try
         {
@@ -105,15 +105,15 @@ public class BookingController : ControllerBase
                 return BadRequest();
             }
 
-            if (!Guid.TryParse(key, out Guid reservaKey))
+            if (!Guid.TryParse(key, out Guid bookingKey))
             {
                 _logger.LogError("bookingKey is dont guid valid.");
                 return BadRequest();
             }
 
-            var deleteReserva = await _bookingService.DeleteReserva(reservaKey);
+            var deleteBooking = await _bookingService.DeleteReserva(bookingKey);
 
-            if (!deleteReserva)
+            if (!deleteBooking)
             {
                 return NotFound();
             }
@@ -128,7 +128,7 @@ public class BookingController : ControllerBase
     }
 
     [HttpPatch("update")]
-    public async Task<IActionResult> UpdateEvent(string requestFilterDefField, string requestFilterDefParam, string FilterUpdatField, string FilterUpdateParam)
+    public async Task<IActionResult> UpdateBooking(string requestFilterDefField, string requestFilterDefParam, string FilterUpdatField, string FilterUpdateParam)
     {
         try
         {

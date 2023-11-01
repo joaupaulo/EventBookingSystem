@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EventBookingSystem.Model;
 
-public class Participante
+public class Participants
 {
     [Required(ErrorMessage = "Fill in the participant's name")]
     public string Nome { get; set; }

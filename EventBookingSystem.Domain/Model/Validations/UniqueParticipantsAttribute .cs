@@ -6,9 +6,9 @@ namespace EventBookingSystem.Model.Validations
     {
         public override bool IsValid(object value)
         {
-            if (value is List<Participante> participantes)
+            if (value is List<Participants> participants)
             {
-                return participantes.GroupBy(p => p.Email).All(g => g.Count() == 1);
+                return participants.GroupBy(p => p.Email).All(g => g.Count() == 1);
             }
 
             return true;

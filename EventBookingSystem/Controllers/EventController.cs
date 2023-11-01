@@ -29,10 +29,13 @@ public class EventController : ControllerBase
                 return BadRequest();
             }
 
-            var KeyEvents = Guid.TryParse(eventKey, out var Key);
+            if (!Guid.TryParse(eventKey, out Guid key))
+            {
+                _logger.LogError("eventKey is not a valid guid.");
+                return BadRequest();
+            }
 
-
-            var evento = await _eventService.GetEvents(Key);
+            var evento = await _eventService.GetEvents(key);
 
             if (evento == null)
             {
@@ -77,7 +80,13 @@ public class EventController : ControllerBase
                 return BadRequest();
             }
 
-            var deleteEvent = await _eventService.DeleteEvent(Key);
+            if (!Guid.TryParse(Key, out Guid eventKey))
+            {
+                _logger.LogError("eventKey is not a valid guid.");
+                return BadRequest();
+            }
+
+            var deleteEvent = await _eventService.DeleteEvent(eventKey);
 
             if (!deleteEvent)
             {
@@ -98,7 +107,7 @@ public class EventController : ControllerBase
     {
         try
         {
-            bool result = await _eventService.UpdateEvent<Evento>(requestFilterDefField, requestFilterDefParam,
+            bool result = await _eventService.UpdateEvent<Event>(requestFilterDefField, requestFilterDefParam,
                 FilterUpdatField, FilterUpdateParam
             );
 
@@ -117,7 +126,7 @@ public class EventController : ControllerBase
 
 
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(Evento eventoDto)
+    public async Task<IActionResult> CreateEvent(Event eventoDto)
     {
         try
         {

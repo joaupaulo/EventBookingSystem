@@ -4,10 +4,10 @@ namespace EventBookingSystem.Service.Interface;
 
 public interface IEventService
 {
-    Task<Evento> CreateEvent(Evento evento);
-    Task<Evento> GetEvents(Guid eventKey);
-    Task<bool> DeleteEvent(string eventKey);
-    Task<List<Evento>> GetAllEvents();
+    Task<Event> CreateEvent(Event evento);
+    Task<Event> GetEvents(Guid eventKey);
+    Task<bool> DeleteEvent(Guid eventKey);
+    Task<List<Event>> GetAllEvents();
 
     Task<bool> UpdateEvent<T>(string filterDefinitionField, string filterDefinitionParam,
         string filterUpdateDefinitionField,

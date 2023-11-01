@@ -13,7 +13,7 @@ namespace EventBookingSystem.Service
         {
             _logger = logger;
         }
-        public byte[] GeneratePDF(Reserva reserva)
+        public byte[] GeneratePDF(Booking booking)
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {
@@ -24,51 +24,50 @@ namespace EventBookingSystem.Service
 
                     doc.Open();
 
-                    Paragraph titleReserva = new Paragraph("Reserva Details");
+                    Paragraph titleReserva = new Paragraph("Booking details");
                     titleReserva.Alignment = Element.ALIGN_CENTER;
                     doc.Add(titleReserva);
 
-                    doc.Add(new Paragraph("Reserva Key: " + reserva.ReservaKey));
-                    doc.Add(new Paragraph("Event Key: " + reserva.EventKey));
-                    doc.Add(new Paragraph("Numero de Participantes: " + reserva.NumeroParticipante));
-                    doc.Add(new Paragraph("Data da Reserva: " + reserva.DataReserva.ToShortDateString()));
-
-                    Paragraph titleParticipantes = new Paragraph("Participantes");
+                    doc.Add(new Paragraph("Booking Key: " + booking.BookingKey));
+                    doc.Add(new Paragraph("Event Key: " + booking.EventKey));
+                    doc.Add(new Paragraph("Participant Number: " + booking.ParticipantNumber));
+                    doc.Add(new Paragraph("Date Booking: " + booking.DateBooking.ToShortDateString()));
+                    Paragraph titleParticipantes = new Paragraph("Participants");
                     titleParticipantes.Alignment = Element.ALIGN_CENTER;
                     doc.Add(titleParticipantes);
 
-                    foreach (var participante in reserva.Participantes)
+                    foreach (var participante in booking.Participants)
                     {
-                        doc.Add(new Paragraph("Nome do Participante: " + participante.Nome));
-                        doc.Add(new Paragraph("Email do Participante: " + participante.Email));
-                        doc.Add(new Paragraph("Telefone do Participante: " + participante.Telefone));
-                        doc.Add(new Paragraph("CPF do Participante: " + participante.CPF));
-                        doc.Add(new Paragraph("Data de Inscrição do Participante: " + participante.DataInscricao.ToShortDateString()));
+                        doc.Add(new Paragraph("Participant Name: " + participante.Nome));
+                        doc.Add(new Paragraph("Participant Email: " + participante.Email));
+                        doc.Add(new Paragraph("Participant Number: " + participante.Telefone));
+                        doc.Add(new Paragraph("Participant CPF: " + participante.CPF));
+                        doc.Add(new Paragraph("Participant Registration Date: " + participante.DataInscricao.ToShortDateString()));
                         doc.NewPage();
                     }
 
                     Paragraph titleEvento = new Paragraph("Evento Details");
                     titleEvento.Alignment = Element.ALIGN_CENTER;
                     doc.Add(titleEvento);
-
-                    doc.Add(new Paragraph("Evento Key: " + reserva.Evento.EventKey));
-                    doc.Add(new Paragraph("Nome do Evento: " + reserva.Evento.Nome));
-                    doc.Add(new Paragraph("Data do Evento: " + reserva.Evento.Data.ToShortDateString()));
-                    doc.Add(new Paragraph("Local do Evento: " + reserva.Evento.Local));
-                    doc.Add(new Paragraph("Capacidade Máxima do Evento: " + reserva.Evento.CapacidadeMaxima));
-                    doc.Add(new Paragraph("Preço do Evento: " + reserva.Evento.Preco));
-                    doc.Add(new Paragraph("Descrição do Evento: " + reserva.Evento.Descricao));
+                        
+                    doc.Add(new Paragraph("Evento Key: " + booking.Event.EventKey));
+                    doc.Add(new Paragraph("Event Name: " + booking.Event.Name));
+                    doc.Add(new Paragraph("Event Date: " + booking.Event.Date.ToShortDateString()));
+                    doc.Add(new Paragraph("Event place: " + booking.Event.Place));
+                    doc.Add(new Paragraph("Maximum Capacity Event: " + booking .Event.MaximumCapacity));
+                    doc.Add(new Paragraph("Event Price: " + booking .Event.Price));    
+                    doc.Add(new Paragraph("Event Description: " + booking.Event.Description));
 
                     doc.Close();
 
-                    return memoryStream.ToArray(); // Retorna o PDF em memória como um array de bytes
+                    return memoryStream.ToArray(); 
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError("Error while generate the PDF:" + ex.Message);
                 }
 
-                return null; // Em caso de erro, retorne null ou lide com o erro adequadamente
+                return null;
             }
         }
 

@@ -39,7 +39,8 @@
         "ASPNETCORE_URLS": "https://+:443;http://+:80"
       },
       "publishAllPorts": true,
-      "useSSL": false
+      "useSSL": false,
+      "https_port": 443
     },
     "WSL": {
       "commandName": "WSL2",

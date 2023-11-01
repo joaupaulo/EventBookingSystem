@@ -12,19 +12,19 @@ public class RepositoryBase : IRepositoryBase
     protected readonly MongoClientSettings MongoClientSettings;
     private string ConnectionString => "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin";
 
-    public RepositoryBase(ILogger<RepositoryBase> logger, ConnectionStringType connectionStringType = ConnectionStringType.Eventos)
+    public RepositoryBase(ILogger<RepositoryBase> logger, ConnectionStringTypes connectionStringType = ConnectionStringTypes.Eventos)
     {
         MongoClientSettings = MongoClientSettings.FromConnectionString(ConnectionString);
         _logger = logger;
         switch (connectionStringType)
         {
-            case ConnectionStringType.Eventos:
+            case ConnectionStringTypes.Eventos:
                 MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("UserRegister");
                 break;
-            case ConnectionStringType.Home:
+            case ConnectionStringTypes.Home:
                 MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("home");
                 break;
-            case ConnectionStringType.Reserva:
+            case ConnectionStringTypes.Reserva:
                 MongoDatabase = new MongoClient(MongoClientSettings).GetDatabase("reserva");
                 break;
         }

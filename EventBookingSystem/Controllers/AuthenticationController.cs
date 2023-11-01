@@ -99,7 +99,7 @@ public class AuthenticationController : ControllerBase
                 });
             }
 
-            var isCorrect = await _userManager.CheckPasswordAsync(existing_user, loginRequestDto.Senha);
+            var isCorrect = await _userManager.CheckPasswordAsync(existing_user, loginRequestDto.Password);
 
             if (!isCorrect)
             {

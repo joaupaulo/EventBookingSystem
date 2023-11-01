@@ -2,12 +2,12 @@
 
 namespace EventBookingSystem.Service.Interface;
 
-public interface IReservaService
+public interface IBookingService
 {
-    Task<Reserva> CreateReserva(Reserva reserva);
-    Task<List<Reserva>> GetAllReservas();
-    Task<Reserva> GetReserva(string reservaKey);
-    Task<bool> DeleteReserva(string reservaKey);
+    Task<Booking> CreateReserva(Booking reserva);
+    Task<List<Booking>> GetAllReservas();
+    Task<Booking> GetReserva(Guid reservaKey);
+    Task<bool> DeleteReserva(Guid reservaKey);
     Task<bool> UpdateReserva(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField,
         string filterUpdateDefinitionParan);
 }

@@ -20,9 +20,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IRepositoryBase, RepositoryBase>();
 builder.Services.AddSingleton<IEventService, EventService>();
-builder.Services.AddSingleton<IReservaService, ReservaService>();
-builder.Services.AddSingleton<IBsonFilter<Evento>, BsonFilter<Evento>>();
-builder.Services.AddSingleton<IBsonFilter<Reserva>, BsonFilter<Reserva>>();
+builder.Services.AddSingleton<IBookingService, BookingService>();
+builder.Services.AddSingleton<IBsonFilter<Event>, BsonFilter<Event>>();
+builder.Services.AddSingleton<IBsonFilter<Booking>, BsonFilter<Booking>>();
 builder.Services.AddSingleton<IPDFGenerator, PDFGenerator>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
@@ -61,6 +61,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     Console.WriteLine("Deployment done in develop");
+}
+
+if (app.Environment.IsProduction())
+{
+    Console.WriteLine("Production ok, compiled!");
 }
 
 app.UseHttpsRedirection();

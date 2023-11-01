@@ -8,19 +8,19 @@ namespace EventBookingSystem.Configurations;
 [ApiController]
 [Route("/reserva")]
 [Authorize]
-public class ReservaController : ControllerBase
+public class BookingController : ControllerBase
 {
-    private readonly IReservaService _reservaService;
-    private readonly ILogger<ReservaController> _logger;
+    private readonly IBookingService _bookingService;
+    private readonly ILogger<BookingController> _logger;
 
-    public ReservaController(IReservaService reservaService, ILogger<ReservaController> logger)
+    public BookingController(IBookingService bookingService, ILogger<BookingController> logger)
     {
-        _reservaService = reservaService;
+        _bookingService = bookingService;
         _logger = logger;
     }
 
     [HttpPost("Create")]
-    public async Task<IActionResult> CreateEvent(Reserva reserva)
+    public async Task<IActionResult> CreateEvent(Booking reserva)
     {
         try
         {
@@ -29,7 +29,7 @@ public class ReservaController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdReserva = await _reservaService.CreateReserva(reserva);
+            var createdReserva = await _bookingService.CreateReserva(reserva);
 
             _logger.LogInformation($"Reserva created sucessfully. ID: {createdReserva}");
 
@@ -52,7 +52,13 @@ public class ReservaController : ControllerBase
                 return BadRequest();
             }
 
-            var reserva = await _reservaService.GetReserva(key);
+            if (!Guid.TryParse(key , out Guid reservaKey))
+            {
+                _logger.LogError("You did not send a valid key");
+                return BadRequest();
+            }
+
+            var reserva = await _bookingService.GetReserva(reservaKey);
 
             if (reserva == null)
             {
@@ -73,7 +79,7 @@ public class ReservaController : ControllerBase
     {
         try
         {
-            var reserva = await _reservaService.GetAllReservas();
+            var reserva = await _bookingService.GetAllReservas();
 
             if (reserva == null)
             {
@@ -99,7 +105,13 @@ public class ReservaController : ControllerBase
                 return BadRequest();
             }
 
-            var deleteReserva = await _reservaService.DeleteReserva(key);
+            if (!Guid.TryParse(key, out Guid reservaKey))
+            {
+                _logger.LogError("eventKey não é um Guid válido.");
+                return BadRequest();
+            }
+
+            var deleteReserva = await _bookingService.DeleteReserva(reservaKey);
 
             if (!deleteReserva)
             {
@@ -120,7 +132,7 @@ public class ReservaController : ControllerBase
     {
         try
         {
-            bool result = await _reservaService.UpdateReserva(requestFilterDefField, requestFilterDefParam,
+            bool result = await _bookingService.UpdateReserva(requestFilterDefField, requestFilterDefParam,
                 FilterUpdatField, FilterUpdateParam
             );
 

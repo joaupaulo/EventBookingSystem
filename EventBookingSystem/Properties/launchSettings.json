@@ -15,7 +15,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "EVENT_COLLECTION": "event-collection",
+        "BOOKING_COLLECTION": "reserva-collection",
+        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7206;http://localhost:5043"
@@ -36,7 +39,20 @@
         "ASPNETCORE_URLS": "https://+:443;http://+:80"
       },
       "publishAllPorts": true,
-      "useSSL": true
+      "useSSL": false
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:7206/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:7206;http://localhost:5043",
+        "BOOKING_COLLECTION": "reserva-collection",
+        "CONNECTION_STRING": "mongodb+srv://joaopaulo123:1799jp@cluster0.8rok3.mongodb.net/?authSource=admin",
+        "EVENT_COLLECTION": "event-collection"
+      },
+      "distributionName": ""
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",

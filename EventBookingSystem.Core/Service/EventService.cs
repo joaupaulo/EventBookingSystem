@@ -12,15 +12,15 @@ public class EventService : RepositoryBase, IEventService
     private readonly ILogger<EventService> _logger;
     private readonly IRepositoryBase _repositoryBase;
     private string _collectionName = "event-collection";
-    private readonly IBsonFilter<Evento> _bsonFilter;
+    private readonly IBsonFilter<Event> _bsonFilter;
 
-    public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger, IBsonFilter<Evento> bsonFilter) : base(logger, ConnectionStringType.Eventos)
+    public EventService(IRepositoryBase repositoryBase, ILogger<EventService> logger, IBsonFilter<Event> bsonFilter) : base(logger, ConnectionStringTypes.Eventos)
     {
         _repositoryBase = repositoryBase;
         _bsonFilter = bsonFilter;
     }
 
-    public async Task<Evento> CreateEvent(Evento evento)
+    public async Task<Event> CreateEvent(Event evento)
     {
         try
         {
@@ -29,7 +29,7 @@ public class EventService : RepositoryBase, IEventService
                 throw new NullReferenceException("You sent a null object");
             }
 
-            var result = await _repositoryBase.CreateDocumentAsync<Evento>(_collectionName, evento);
+            var result = await _repositoryBase.CreateDocumentAsync<Event>(_collectionName, evento);
 
             return result;
         }
@@ -40,11 +40,11 @@ public class EventService : RepositoryBase, IEventService
         }
     }
 
-    public async Task<List<Evento>> GetAllEvents()
+    public async Task<List<Event>> GetAllEvents()
     {
         try
         {
-            var result = await _repositoryBase.GetAllDocument<Evento>(_collectionName);
+            var result = await _repositoryBase.GetAllDocument<Event>(_collectionName);
 
             return result;
 
@@ -57,13 +57,13 @@ public class EventService : RepositoryBase, IEventService
 
     }
 
-    public async Task<Evento> GetEvents(Guid eventKey)
+    public async Task<Event> GetEvents(Guid eventKey)
     {
         try
         {
-            var filterGetEvent = _bsonFilter.FilterDefinition<Evento>("EventKey", eventKey);
+            var filterGetEvent = _bsonFilter.FilterDefinition<Event>("EventKey", eventKey);
 
-            var result = await _repositoryBase.GetDocument<Evento>(_collectionName, filterGetEvent);
+            var result = await _repositoryBase.GetDocument<Event>(_collectionName, filterGetEvent);
 
             return result;
 
@@ -74,13 +74,13 @@ public class EventService : RepositoryBase, IEventService
             throw;
         }
     }
-    public async Task<bool> DeleteEvent(string eventKey)
+    public async Task<bool> DeleteEvent(Guid eventKey)
     {
         try
         {
-            var filterDeletEvent = _bsonFilter.FilterDefinition<Evento>("EventKey", eventKey);
+            var filterDeletEvent = _bsonFilter.FilterDefinition<Event>("EventKey", eventKey);
 
-            var result = await _repositoryBase.DeleteDocument<Evento>(_collectionName, filterDeletEvent);
+            var result = await _repositoryBase.DeleteDocument<Event>(_collectionName, filterDeletEvent);
 
             return result;
         }
@@ -96,9 +96,9 @@ public class EventService : RepositoryBase, IEventService
     {
         try
         {
-            var filterUpdate = _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan, out UpdateDefinition<Evento> update);
+            var filterUpdate = _bsonFilter.FilterDefinitionUpdate(filterDefinitionField, filterDefinitionParam, filterUpdateDefinitionField, filterUpdateDefinitionParan, out UpdateDefinition<Event> update);
 
-            var result = await _repositoryBase.UpdateDocument<Evento>(_collectionName, filterUpdate, update);
+            var result = await _repositoryBase.UpdateDocument<Event>(_collectionName, filterUpdate, update);
 
             return result;
         }

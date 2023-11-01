@@ -1,6 +1,6 @@
 ﻿namespace EventBookingSystem.Model;
 
-public enum ConnectionStringType
+public enum ConnectionStringTypes
 {
     Eventos,
     Reserva,

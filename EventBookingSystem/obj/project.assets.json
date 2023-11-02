@@ -2038,19 +2038,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\João Paulo\\.nuget\\packages\\": {}
+    "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+      "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
       "projectName": "EventBookingSystem",
-      "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
-      "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\obj\\",
+      "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+      "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2058,14 +2058,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
-              "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj"
+            "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
+              "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj"
             }
           }
         }
@@ -2124,7 +2125,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2133,7 +2134,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'BouncyCastle 1.8.9' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net7.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
       "libraryId": "BouncyCastle",
       "targetGraphs": [
         "net7.0"
@@ -2143,7 +2144,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'iTextSharp 5.5.13.3' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net7.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'iTextSharp 5.5.13.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
       "libraryId": "iTextSharp",
       "targetGraphs": [
         "net7.0"

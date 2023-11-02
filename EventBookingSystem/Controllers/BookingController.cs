@@ -29,7 +29,7 @@ public class BookingController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdBooking = await _bookingService.CreateReserva(booking);
+            var createdBooking = await _bookingService.CreateBooking(booking);
 
             _logger.LogInformation($"Booking created sucessfully. ID: {createdBooking.Id}");
 
@@ -58,7 +58,7 @@ public class BookingController : ControllerBase
                 return BadRequest();
             }
 
-            var booking = await _bookingService.GetReserva(bookingKey);
+            var booking = await _bookingService.GetBooking(bookingKey);
 
             if (booking == null)
             {
@@ -79,7 +79,7 @@ public class BookingController : ControllerBase
     {
         try
         {
-            var booking = await _bookingService.GetAllReservas();
+            var booking = await _bookingService.GetAllBooking();
 
             if (booking == null)
             {
@@ -111,7 +111,7 @@ public class BookingController : ControllerBase
                 return BadRequest();
             }
 
-            var deleteBooking = await _bookingService.DeleteReserva(bookingKey);
+            var deleteBooking = await _bookingService.DeleteBooking(bookingKey);
 
             if (!deleteBooking)
             {
@@ -132,7 +132,7 @@ public class BookingController : ControllerBase
     {
         try
         {
-            bool result = await _bookingService.UpdateReserva(requestFilterDefField, requestFilterDefParam,
+            bool result = await _bookingService.UpdateBooking(requestFilterDefField, requestFilterDefParam,
                 FilterUpdatField, FilterUpdateParam
             );
 

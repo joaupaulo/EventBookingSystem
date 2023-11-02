@@ -27,7 +27,7 @@ public class BookingService : RepositoryBase, IBookingService
         _emailSender = emailSender;
     }
 
-    public async Task<Booking> CreateReserva(Booking booking)
+    public async Task<Booking> CreateBooking(Booking booking)
     {
         try
         {
@@ -51,10 +51,7 @@ public class BookingService : RepositoryBase, IBookingService
 
             var emailParticipantes = result.Participants.Select(x => x.Email).ToList();
 
-            string subject = "Sua reserva foi realizada!";
-            string body = "Olá tudo bem ? sua reserva para o evento X foi realizada";
-            string attachmentFileName = "reserva.pdf";
-            byte[] attachmentData = newPdf;
+            var subject = Subject(newPdf, out var body, out var attachmentFileName, out var attachmentData);
 
             foreach (var email in emailParticipantes)
             {
@@ -72,7 +69,16 @@ public class BookingService : RepositoryBase, IBookingService
         }
     }
 
-    public async Task<List<Booking>> GetAllReservas()
+    private static string Subject(byte[] newPdf, out string body, out string attachmentFileName, out byte[] attachmentData)
+    {
+        string subject = "Sua reserva foi realizada!";
+        body = "Olá tudo bem ? sua reserva para o evento X foi realizada";
+        attachmentFileName = "reserva.pdf";
+        attachmentData = newPdf;
+        return subject;
+    }
+
+    public async Task<List<Booking>> GetAllBooking()
     {
         try
         {
@@ -87,7 +93,7 @@ public class BookingService : RepositoryBase, IBookingService
         }
     }
 
-    public async Task<Booking> GetReserva(Guid reservaKey)
+    public async Task<Booking> GetBooking(Guid reservaKey)
     {
         try
         {
@@ -104,7 +110,7 @@ public class BookingService : RepositoryBase, IBookingService
         }
     }
 
-    public async Task<bool> DeleteReserva(Guid reservaKey)
+    public async Task<bool> DeleteBooking(Guid reservaKey)
     {
         try
         {
@@ -121,7 +127,7 @@ public class BookingService : RepositoryBase, IBookingService
         }
     }
 
-    public async Task<bool> UpdateReserva(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField,
+    public async Task<bool> UpdateBooking(string filterDefinitionField, string filterDefinitionParam, string filterUpdateDefinitionField,
         string filterUpdateDefinitionParan)
     {
         try

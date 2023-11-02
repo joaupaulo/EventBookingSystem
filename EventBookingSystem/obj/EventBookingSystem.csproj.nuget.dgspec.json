@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
+        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
         "projectName": "EventBookingSystem.Core",
-        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
-        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\obj\\",
+        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj",
+        "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,17 +22,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
-                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
+              "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
               },
-              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
-                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj"
+              "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
+                "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj"
               }
             }
           }
@@ -68,21 +69,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
         "projectName": "EventBookingSystem.Domain",
-        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
-        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\obj\\",
+        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,7 +91,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -129,21 +131,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
         "projectName": "EventBookingSystem.Repository",
-        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
-        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Repository\\obj\\",
+        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\EventBookingSystem.Repository.csproj",
+        "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -151,14 +153,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
-                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
+              "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Domain\\EventBookingSystem.Domain.csproj"
               }
             }
           }
@@ -198,21 +201,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
+    "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "projectUniqueName": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
         "projectName": "EventBookingSystem",
-        "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
-        "packagesPath": "C:\\Users\\João Paulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem\\obj\\",
+        "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\EventBookingSystem.csproj",
+        "packagesPath": "C:\\Users\\JoãoPaulodosSantosSa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\João Paulo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JoãoPaulodosSantosSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -220,14 +223,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/tag-trade-repository/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
-                "projectPath": "C:\\Users\\João Paulo\\Desktop\\Meus projetos\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj"
+              "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj": {
+                "projectPath": "C:\\Users\\JoãoPaulodosSantosSa\\Desktop\\EventBookingSystem\\EventBookingSystem.Core\\EventBookingSystem.Core.csproj"
               }
             }
           }
@@ -286,7 +290,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
